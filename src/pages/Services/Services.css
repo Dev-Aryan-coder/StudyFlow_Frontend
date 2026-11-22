@@ -1,0 +1,46 @@
+/* Services.css - 1-to-1 dedicated styles for Services Page */
+.page-container {
+  min-height: calc(100vh - 5rem);
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 4rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.page-content-wrapper {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 38rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    padding: 2.5rem 1rem;
+    min-height: calc(100vh - 4.5rem);
+  }
+
+  .page-title {
+    font-size: 1.85rem;
+  }
+
+  .page-description {
+    font-size: 1rem;
+  }
+}

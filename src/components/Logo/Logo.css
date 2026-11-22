@@ -1,0 +1,6 @@
+/* Logo.css - Dedicated styles for StudyFlow 3-Bar Capsule Logo */
+.studyflow-logo-svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
