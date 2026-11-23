@@ -95,7 +95,7 @@ const FeatureCard = ({ children, className }) => {
 
 const FeatureTitle = ({ children }) => {
   return (
-    <h3 className="text-left text-lg font-semibold tracking-tight text-neutral-900 md:text-xl dark:text-neutral-100">
+    <h3 className="text-left text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl dark:text-neutral-100">
       {children}
     </h3>
   );
@@ -103,7 +103,7 @@ const FeatureTitle = ({ children }) => {
 
 const FeatureDescription = ({ children }) => {
   return (
-    <p className="my-2.5 max-w-xl text-left text-xs font-normal leading-relaxed text-neutral-500 sm:text-sm dark:text-neutral-400">
+    <p className="my-3 max-w-2xl text-left text-sm font-normal leading-relaxed text-neutral-600 sm:text-base dark:text-neutral-300">
       {children}
     </p>
   );
