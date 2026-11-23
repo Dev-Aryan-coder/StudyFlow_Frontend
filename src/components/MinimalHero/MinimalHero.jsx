@@ -263,7 +263,7 @@ export function MinimalHero() {
   return (
     <div className="minimal-hero-container">
       {/* Hero Center Section - Expansive 90%+ Screen Width */}
-      <main className="w-full max-w-[95vw] lg:max-w-[92vw] xl:max-w-[90vw] mx-auto px-2 sm:px-4 pt-6 sm:pt-10 pb-12 sm:pb-16 flex flex-col items-center text-center">
+      <main className="w-full max-w-[95vw] lg:max-w-[92vw] xl:max-w-[90vw] mx-auto px-2 sm:px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 flex flex-col items-center text-center">
 
         {/* Main Headline */}
         <motion.h1

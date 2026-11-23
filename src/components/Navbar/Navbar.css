@@ -5,39 +5,49 @@
   top: 0;
   z-index: 50;
   width: 100%;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.navbar-wrapper.is-scrolled {
-  top: 12px;
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .navbar-wrapper.is-scrolled {
-    top: 16px;
-    padding: 0 1.5rem;
-  }
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar-container {
+  pointer-events: auto;
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #f3f4f6;
   border-radius: 0px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition: 
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, width, max-width, border-radius, box-shadow;
 }
 
-/* Floating Pill Shape when scrolled (border-radius: 20px) */
+/* Floating Pill Shape when scrolled (border-radius: 25px) */
 .navbar-container.pill-navbar {
+  width: calc(100% - 1.5rem);
   max-width: 76rem;
   margin: 0 auto;
-  border-radius: 20px !important;
+  transform: translateY(10px);
+  border-radius: 25px !important;
   background-color: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 768px) {
+  .navbar-container.pill-navbar {
+    width: calc(100% - 3rem);
+    transform: translateY(14px);
+  }
 }
 
 .navbar-inner {
@@ -48,7 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 640px) {
@@ -60,13 +70,13 @@
 
 /* Compact inner height when in pill state */
 .navbar-container.pill-navbar .navbar-inner {
-  height: 3.6rem; /* ~58px on mobile */
+  height: 3.75rem; /* 60px on mobile */
   padding: 0 1.25rem;
 }
 
 @media (min-width: 640px) {
   .navbar-container.pill-navbar .navbar-inner {
-    height: 4rem; /* 64px on desktop */
+    height: 4.125rem; /* 66px on desktop */
     padding: 0 1.75rem;
   }
 }
@@ -100,7 +110,7 @@
 }
 
 .navbar-mobile-menu.pill-mobile-menu {
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 25px 25px !important;
   background-color: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
