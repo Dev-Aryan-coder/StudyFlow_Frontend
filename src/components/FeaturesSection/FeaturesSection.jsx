@@ -54,7 +54,7 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="relative z-20 mx-auto max-w-7xl py-16 lg:py-28 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-20 mx-auto w-full max-w-[96vw] lg:max-w-[93vw] xl:max-w-[90vw] py-16 lg:py-28 px-2 sm:px-4 lg:px-6">
       <div className="px-4 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-200 bg-neutral-50 text-xs font-medium text-neutral-700 mb-4 shadow-sm">
           <Sparkles size={13} className="text-neutral-900" />
@@ -70,8 +70,8 @@ export function FeaturesSection() {
         </p>
       </div>
 
-      <div className="relative mt-12 sm:mt-16">
-        <div className="grid grid-cols-1 rounded-2xl border border-neutral-200/90 bg-white shadow-sm lg:grid-cols-6 overflow-hidden dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="relative mt-12 sm:mt-16 w-full">
+        <div className="grid grid-cols-1 rounded-none border border-neutral-200/90 bg-white shadow-sm lg:grid-cols-6 overflow-hidden dark:border-neutral-800 dark:bg-neutral-950">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
