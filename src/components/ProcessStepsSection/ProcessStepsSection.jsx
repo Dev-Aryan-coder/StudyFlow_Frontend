@@ -7,15 +7,6 @@ import {
   Layout,
   MessageSquare,
   Globe,
-  QrCode,
-  FileText,
-  CheckCircle2,
-  Code2,
-  ShieldCheck,
-  Check,
-  Laptop,
-  Flame,
-  Send,
   Lock,
   ArrowRight
 } from 'lucide-react';
@@ -30,6 +21,8 @@ export function ProcessStepsSection() {
       id: 'setup',
       stepNum: '01',
       badge: 'STEP 1',
+      shortTitle: 'Project Setup',
+      icon: Sparkles,
       title: 'Describe Your Idea & Start Your Project',
       tagline: 'Quick Project Setup',
       description:
@@ -42,34 +35,33 @@ export function ProcessStepsSection() {
       ],
       canvasBg: 'bg-amber-50/70 dark:bg-amber-950/20',
       accentText: 'text-amber-600 dark:text-amber-400',
+      collapsedIconBg: 'bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400',
       pillActive: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/70 dark:text-amber-300 dark:border-amber-800',
-      activeBorder: 'border-amber-300/80 dark:border-amber-700/60 shadow-amber-500/10',
-      renderVisual: (isActive) => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="relative w-full max-w-[260px] rounded-2xl bg-white/95 dark:bg-neutral-900/90 border border-neutral-200/90 dark:border-neutral-800 p-4 shadow-lg backdrop-blur-md">
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-200/80 dark:border-neutral-800 text-xs">
-              <span className="font-mono text-neutral-600 dark:text-neutral-400">new_institute.init</span>
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Live Setup
-              </span>
+      activeBorder: 'border-amber-300/90 dark:border-amber-700/70 shadow-amber-500/10',
+      renderVisual: () => (
+        <div className="w-full max-w-[270px] rounded-2xl bg-white/95 dark:bg-neutral-900/95 border border-neutral-200/90 dark:border-neutral-800 p-3.5 shadow-lg backdrop-blur-md">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-200/80 dark:border-neutral-800 text-xs">
+            <span className="font-mono text-neutral-600 dark:text-neutral-400 text-[11px] truncate">new_institute.init</span>
+            <span className="shrink-0 inline-flex items-center gap-1 font-mono text-[10px] text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Live Setup
+            </span>
+          </div>
+          <div className="space-y-1 text-[11px] font-mono text-neutral-800 dark:text-neutral-200">
+            <div className="flex items-center gap-1.5 truncate">
+              <span className="text-amber-600 dark:text-amber-400 font-bold">$</span>
+              <span className="truncate">create-institute "Apex Academy"</span>
             </div>
-            <div className="space-y-1.5 text-[11px] font-mono text-neutral-800 dark:text-neutral-200">
-              <div className="flex items-center gap-2">
-                <span className="text-amber-600 dark:text-amber-400 font-bold">$</span>
-                <span>create-institute "Apex Academy"</span>
-              </div>
-              <div className="text-neutral-500 dark:text-neutral-400 text-[10px] pl-3">
-                → Created website project
-              </div>
-              <div className="text-neutral-500 dark:text-neutral-400 text-[10px] pl-3">
-                → Set up admission pipeline
-              </div>
+            <div className="text-neutral-500 dark:text-neutral-400 text-[10px] pl-2.5 truncate">
+              → Created website project
             </div>
-            <div className="mt-3 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
-              <span>Courses: JEE & NEET</span>
-              <span className="text-amber-600 dark:text-amber-400 font-semibold">Ready in 2s</span>
+            <div className="text-neutral-500 dark:text-neutral-400 text-[10px] pl-2.5 truncate">
+              → Set up admission pipeline
             </div>
+          </div>
+          <div className="mt-2.5 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
+            <span className="truncate">Courses: JEE & NEET</span>
+            <span className="shrink-0 text-amber-600 dark:text-amber-400 font-semibold">Ready in 2s</span>
           </div>
         </div>
       ),
@@ -78,6 +70,8 @@ export function ProcessStepsSection() {
       id: 'pages',
       stepNum: '02',
       badge: 'STEP 2',
+      shortTitle: 'Ready Pages',
+      icon: Layers,
       title: 'Get Default Welcoming Pages Ready',
       tagline: 'Pre-Made Pages Ready To Use',
       description:
@@ -90,28 +84,27 @@ export function ProcessStepsSection() {
       ],
       canvasBg: 'bg-indigo-50/70 dark:bg-indigo-950/20',
       accentText: 'text-indigo-600 dark:text-indigo-400',
+      collapsedIconBg: 'bg-indigo-500/10 border-indigo-500/30 text-indigo-600 dark:text-indigo-400',
       pillActive: 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-800',
-      activeBorder: 'border-indigo-300/80 dark:border-indigo-700/60 shadow-indigo-500/10',
-      renderVisual: (isActive) => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="relative w-full max-w-[240px] h-[150px]">
-            {/* Stacked Pages Deck */}
-            <div className="absolute inset-x-2 top-0 h-28 rounded-xl bg-white/70 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 transform -rotate-6 scale-90 opacity-60 backdrop-blur-xs shadow-sm" />
-            <div className="absolute inset-x-1 top-2 h-28 rounded-xl bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 transform rotate-3 scale-95 opacity-80 backdrop-blur-xs shadow-sm" />
-            <div className="absolute inset-x-0 top-4 h-28 rounded-xl bg-white/95 dark:bg-neutral-900/90 border border-indigo-300 dark:border-indigo-700/50 p-3 shadow-xl backdrop-blur-md">
-              <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-1.5 mb-2">
-                <span className="text-[11px] font-semibold text-neutral-900 dark:text-white">Admissions Portal</span>
-                <span className="text-[9px] font-mono text-indigo-700 bg-indigo-50 dark:bg-indigo-950/50 dark:text-indigo-300 px-1.5 py-0.5 rounded font-medium">Welcoming</span>
-              </div>
-              <div className="space-y-1">
-                <div className="h-2 w-3/4 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
-                <div className="h-2 w-1/2 bg-neutral-100 dark:bg-neutral-800 rounded-full" />
-              </div>
-              <div className="mt-3 flex items-center gap-1.5">
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Home</span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Batches</span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Toppers</span>
-              </div>
+      activeBorder: 'border-indigo-300/90 dark:border-indigo-700/70 shadow-indigo-500/10',
+      renderVisual: () => (
+        <div className="relative w-full max-w-[250px] h-[140px]">
+          {/* Stacked Pages Deck */}
+          <div className="absolute inset-x-2 top-0 h-24 rounded-xl bg-white/70 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 transform -rotate-6 scale-90 opacity-60 backdrop-blur-xs shadow-xs" />
+          <div className="absolute inset-x-1 top-2 h-24 rounded-xl bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 transform rotate-3 scale-95 opacity-80 backdrop-blur-xs shadow-xs" />
+          <div className="absolute inset-x-0 top-3.5 h-24 rounded-xl bg-white/95 dark:bg-neutral-900/95 border border-indigo-300 dark:border-indigo-700/50 p-3 shadow-lg backdrop-blur-md">
+            <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-1.5 mb-1.5">
+              <span className="text-[11px] font-semibold text-neutral-900 dark:text-white truncate">Admissions Portal</span>
+              <span className="shrink-0 text-[9px] font-mono text-indigo-700 bg-indigo-50 dark:bg-indigo-950/50 dark:text-indigo-300 px-1.5 py-0.5 rounded font-medium">Welcoming</span>
+            </div>
+            <div className="space-y-1">
+              <div className="h-1.5 w-3/4 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
+              <div className="h-1.5 w-1/2 bg-neutral-100 dark:bg-neutral-800 rounded-full" />
+            </div>
+            <div className="mt-2.5 flex items-center gap-1.5">
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Home</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Batches</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">Toppers</span>
             </div>
           </div>
         </div>
@@ -121,6 +114,8 @@ export function ProcessStepsSection() {
       id: 'layout',
       stepNum: '03',
       badge: 'STEP 3',
+      shortTitle: 'Visual Editor',
+      icon: Layout,
       title: 'Edit Layout & Style to Your Need',
       tagline: 'Simple Drag & Drop Editor',
       description:
@@ -133,30 +128,29 @@ export function ProcessStepsSection() {
       ],
       canvasBg: 'bg-sky-50/70 dark:bg-sky-950/20',
       accentText: 'text-sky-600 dark:text-sky-400',
+      collapsedIconBg: 'bg-sky-500/10 border-sky-500/30 text-sky-600 dark:text-sky-400',
       pillActive: 'bg-sky-100 text-sky-900 border-sky-300 dark:bg-sky-950/70 dark:text-sky-300 dark:border-sky-800',
-      activeBorder: 'border-sky-300/80 dark:border-sky-700/60 shadow-sky-500/10',
-      renderVisual: (isActive) => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-[260px] rounded-xl bg-white/95 dark:bg-neutral-900/90 border border-sky-300 dark:border-sky-700/50 p-3 shadow-xl backdrop-blur-md">
-            <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2 text-xs">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-red-400" />
-                <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              </div>
-              <span className="text-[10px] font-mono text-sky-700 dark:text-sky-400 font-medium">Layout Inspector</span>
+      activeBorder: 'border-sky-300/90 dark:border-sky-700/70 shadow-sky-500/10',
+      renderVisual: () => (
+        <div className="w-full max-w-[270px] rounded-xl bg-white/95 dark:bg-neutral-900/95 border border-sky-300 dark:border-sky-700/50 p-3 shadow-lg backdrop-blur-md">
+          <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2 text-xs">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-red-400" />
+              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
             </div>
-            <div className="p-2 rounded-lg border border-dashed border-sky-400/50 bg-sky-50/60 dark:bg-sky-950/30 text-center">
-              <p className="text-[10px] font-mono text-sky-800 dark:text-sky-300 font-medium">&lt;HeroSection layout="split" /&gt;</p>
-              <div className="mt-1 flex items-center justify-center gap-1">
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 shadow-2xs font-medium">Padding: 32px</span>
-                <span className="text-[9px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 shadow-2xs font-medium">Font: Jakarta</span>
-              </div>
+            <span className="text-[10px] font-mono text-sky-700 dark:text-sky-400 font-medium truncate">Layout Inspector</span>
+          </div>
+          <div className="p-2 rounded-lg border border-dashed border-sky-400/50 bg-sky-50/60 dark:bg-sky-950/30 text-center">
+            <p className="text-[10px] font-mono text-sky-800 dark:text-sky-300 font-medium truncate">&lt;HeroSection layout="split" /&gt;</p>
+            <div className="mt-1 flex items-center justify-center gap-1 flex-wrap">
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 shadow-2xs font-medium">Padding: 32px</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 shadow-2xs font-medium">Font: Jakarta</span>
             </div>
-            <div className="mt-2 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
-              <span>Preview: Mobile & Desktop</span>
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Live Sync</span>
-            </div>
+          </div>
+          <div className="mt-2 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
+            <span>Preview: Responsive</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Live Sync</span>
           </div>
         </div>
       ),
@@ -165,6 +159,8 @@ export function ProcessStepsSection() {
       id: 'features',
       stepNum: '04',
       badge: 'STEP 4',
+      shortTitle: 'Coaching Tools',
+      icon: MessageSquare,
       title: 'Add Coaching Features You Want',
       tagline: 'Turn Features On or Off',
       description:
@@ -177,31 +173,30 @@ export function ProcessStepsSection() {
       ],
       canvasBg: 'bg-emerald-50/70 dark:bg-emerald-950/20',
       accentText: 'text-emerald-600 dark:text-emerald-400',
+      collapsedIconBg: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400',
       pillActive: 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-800',
-      activeBorder: 'border-emerald-300/80 dark:border-emerald-700/60 shadow-emerald-500/10',
-      renderVisual: (isActive) => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-[260px] rounded-xl bg-white/95 dark:bg-neutral-900/90 border border-emerald-300 dark:border-emerald-700/50 p-3 shadow-xl backdrop-blur-md">
-            <div className="flex items-center gap-2 border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2">
-              <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">
-                <MessageSquare size={11} />
-              </div>
-              <div className="overflow-hidden">
-                <p className="text-[11px] font-semibold text-neutral-900 dark:text-white truncate">WhatsApp Admission Router</p>
-                <p className="text-[9px] text-neutral-500 dark:text-neutral-400">Direct to Director Phone</p>
-              </div>
+      activeBorder: 'border-emerald-300/90 dark:border-emerald-700/70 shadow-emerald-500/10',
+      renderVisual: () => (
+        <div className="w-full max-w-[270px] rounded-xl bg-white/95 dark:bg-neutral-900/95 border border-emerald-300 dark:border-emerald-700/50 p-3 shadow-lg backdrop-blur-md">
+          <div className="flex items-center gap-2 border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2">
+            <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] shrink-0">
+              <MessageSquare size={11} />
             </div>
-            <div className="rounded bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/60 dark:border-neutral-700/40 p-2 text-[10px] space-y-1 font-mono text-neutral-700 dark:text-neutral-300">
-              <div className="flex items-center justify-between text-emerald-700 dark:text-emerald-400 font-semibold">
-                <span>Parent Inquiry</span>
-                <span>Active 120ms</span>
-              </div>
-              <p className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">JEE Pinnacle 2026 syllabus requested</p>
+            <div className="overflow-hidden">
+              <p className="text-[11px] font-semibold text-neutral-900 dark:text-white truncate">WhatsApp Router</p>
+              <p className="text-[9px] text-neutral-500 dark:text-neutral-400 truncate">Direct to Director Phone</p>
             </div>
-            <div className="mt-2 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400 pt-1.5 border-t border-neutral-200/60 dark:border-neutral-800">
-              <span>QR Gate Attendance</span>
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Enabled</span>
+          </div>
+          <div className="rounded bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/60 dark:border-neutral-700/40 p-2 text-[10px] space-y-1 font-mono text-neutral-700 dark:text-neutral-300">
+            <div className="flex items-center justify-between text-emerald-700 dark:text-emerald-400 font-semibold">
+              <span>Parent Inquiry</span>
+              <span className="shrink-0 text-[9px]">Active 120ms</span>
             </div>
+            <p className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">JEE Pinnacle batch requested</p>
+          </div>
+          <div className="mt-2 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400 pt-1.5 border-t border-neutral-200/60 dark:border-neutral-800">
+            <span>QR Attendance</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Enabled</span>
           </div>
         </div>
       ),
@@ -210,6 +205,8 @@ export function ProcessStepsSection() {
       id: 'deploy',
       stepNum: '05',
       badge: 'STEP 5',
+      shortTitle: 'Host & Go Live',
+      icon: Globe,
       title: 'Host & Go Live in One Click',
       tagline: 'Publish to the Internet',
       description:
@@ -222,28 +219,27 @@ export function ProcessStepsSection() {
       ],
       canvasBg: 'bg-purple-50/70 dark:bg-purple-950/20',
       accentText: 'text-purple-600 dark:text-purple-400',
+      collapsedIconBg: 'bg-purple-500/10 border-purple-500/30 text-purple-600 dark:text-purple-400',
       pillActive: 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/70 dark:text-purple-300 dark:border-purple-800',
-      activeBorder: 'border-purple-300/80 dark:border-purple-700/60 shadow-purple-500/10',
-      renderVisual: (isActive) => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-[260px] rounded-xl bg-white/95 dark:bg-neutral-900/90 border border-purple-300 dark:border-purple-700/50 p-3 shadow-xl backdrop-blur-md">
-            <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2 text-xs">
-              <div className="flex items-center gap-1.5 font-mono text-[10px] text-purple-700 dark:text-purple-300 font-medium">
-                <Lock size={10} className="text-emerald-600 dark:text-emerald-400" />
-                <span>apex-science.studyflow.in</span>
-              </div>
-              <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 font-medium">
-                SSL OK
-              </span>
+      activeBorder: 'border-purple-300/90 dark:border-purple-700/70 shadow-purple-500/10',
+      renderVisual: () => (
+        <div className="w-full max-w-[270px] rounded-xl bg-white/95 dark:bg-neutral-900/95 border border-purple-300 dark:border-purple-700/50 p-3 shadow-lg backdrop-blur-md">
+          <div className="flex items-center justify-between border-b border-neutral-200/80 dark:border-neutral-800 pb-2 mb-2 text-xs">
+            <div className="flex items-center gap-1.5 font-mono text-[10px] text-purple-700 dark:text-purple-300 font-medium truncate max-w-[170px]">
+              <Lock size={10} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <span className="truncate">apex-science.studyflow.in</span>
             </div>
-            <div className="p-2 rounded bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/40 text-center">
-              <p className="text-[11px] font-semibold text-neutral-900 dark:text-white">Live Website Online</p>
-              <p className="text-[9px] text-purple-700 dark:text-purple-300 mt-0.5">Loads fast on mobile & desktop</p>
-            </div>
-            <div className="mt-2.5 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
-              <span>Uptime: 99.99%</span>
-              <span className="text-purple-600 dark:text-purple-400 font-semibold">Live Everywhere</span>
-            </div>
+            <span className="shrink-0 text-[9px] font-mono text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 font-medium">
+              SSL OK
+            </span>
+          </div>
+          <div className="p-2 rounded bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/40 text-center">
+            <p className="text-[11px] font-semibold text-neutral-900 dark:text-white truncate">Live Website Online</p>
+            <p className="text-[9px] text-purple-700 dark:text-purple-300 mt-0.5 truncate">Loads fast on mobile & desktop</p>
+          </div>
+          <div className="mt-2.5 flex items-center justify-between text-[10px] text-neutral-500 dark:text-neutral-400">
+            <span>Uptime: 99.99%</span>
+            <span className="text-purple-600 dark:text-purple-400 font-semibold">Live Everywhere</span>
           </div>
         </div>
       ),
@@ -278,6 +274,7 @@ export function ProcessStepsSection() {
         <div className="flex flex-col lg:flex-row gap-4 h-auto lg:h-[500px] xl:h-[530px] w-full">
           {steps.map((item, index) => {
             const isExpanded = activeStep === index;
+            const StepIcon = item.icon;
 
             return (
               <motion.div
@@ -289,17 +286,17 @@ export function ProcessStepsSection() {
                   layout: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
                 }}
                 className={cn(
-                  'group/canvas-card relative rounded-3xl p-5 sm:p-7 flex flex-col justify-between overflow-hidden cursor-pointer border transition-all duration-300 select-none shadow-sm',
+                  'group/canvas-card relative rounded-3xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer border transition-all duration-300 select-none shadow-sm',
                   isExpanded
-                    ? cn('bg-white dark:bg-neutral-900 lg:flex-[2.6] xl:flex-[3.0] shadow-2xl', item.activeBorder)
-                    : 'bg-white/90 dark:bg-neutral-900/90 border-neutral-200/90 dark:border-neutral-800 lg:flex-1 hover:border-neutral-300 dark:hover:border-neutral-700'
+                    ? cn('bg-white dark:bg-neutral-900 lg:flex-[2.8] xl:flex-[3.2] shadow-2xl', item.activeBorder)
+                    : 'bg-white/95 dark:bg-neutral-900/90 border-neutral-200/90 dark:border-neutral-800 lg:flex-1 hover:border-neutral-300 dark:hover:border-neutral-700'
                 )}
               >
                 {/* Aceternity Corner Cross Icons */}
-                <Icon className="absolute h-5 w-5 -top-2.5 -left-2.5 text-neutral-400 dark:text-neutral-600 pointer-events-none z-20" />
-                <Icon className="absolute h-5 w-5 -bottom-2.5 -left-2.5 text-neutral-400 dark:text-neutral-600 pointer-events-none z-20" />
-                <Icon className="absolute h-5 w-5 -top-2.5 -right-2.5 text-neutral-400 dark:text-neutral-600 pointer-events-none z-20" />
-                <Icon className="absolute h-5 w-5 -bottom-2.5 -right-2.5 text-neutral-400 dark:text-neutral-600 pointer-events-none z-20" />
+                <Icon className="absolute h-5 w-5 -top-2.5 -left-2.5 text-neutral-400/80 dark:text-neutral-600 pointer-events-none z-20" />
+                <Icon className="absolute h-5 w-5 -bottom-2.5 -left-2.5 text-neutral-400/80 dark:text-neutral-600 pointer-events-none z-20" />
+                <Icon className="absolute h-5 w-5 -top-2.5 -right-2.5 text-neutral-400/80 dark:text-neutral-600 pointer-events-none z-20" />
+                <Icon className="absolute h-5 w-5 -bottom-2.5 -right-2.5 text-neutral-400/80 dark:text-neutral-600 pointer-events-none z-20" />
 
                 {/* Light Color Canvas Reveal Effect on Hover */}
                 <AnimatePresence>
@@ -328,7 +325,7 @@ export function ProcessStepsSection() {
                   <div className="flex items-center gap-2">
                     <span
                       className={cn(
-                        'px-3 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider uppercase border transition-colors',
+                        'px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider uppercase border transition-colors',
                         isExpanded
                           ? item.pillActive
                           : 'bg-neutral-100 text-neutral-600 border-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 dark:border-neutral-700/60'
@@ -343,19 +340,53 @@ export function ProcessStepsSection() {
 
                   <div
                     className={cn(
-                      'w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300',
+                      'w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 shrink-0',
                       isExpanded
                         ? 'bg-neutral-900 text-white dark:bg-white dark:text-black scale-105 rotate-45 shadow-sm'
                         : 'bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 group-hover/canvas-card:text-neutral-900 dark:group-hover/canvas-card:text-white group-hover/canvas-card:scale-105'
                     )}
                   >
-                    <ArrowUpRight size={15} />
+                    <ArrowUpRight size={14} />
                   </div>
                 </div>
 
-                {/* Center Visual Mockup */}
-                <div className="my-auto py-4 min-h-[160px] sm:min-h-[180px] flex items-center justify-center relative z-10">
-                  {item.renderVisual(isExpanded)}
+                {/* Center Visual: Full Rich Mockup when Expanded, Clean Compact Icon Badge when Collapsed */}
+                <div className="my-auto py-3 min-h-[160px] sm:min-h-[180px] flex items-center justify-center relative z-10 w-full overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    {isExpanded ? (
+                      <motion.div
+                        key={'expanded-visual-' + item.id}
+                        initial={{ opacity: 0, scale: 0.94 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.94 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="w-full flex items-center justify-center"
+                      >
+                        {item.renderVisual()}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key={'collapsed-visual-' + item.id}
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.85 }}
+                        transition={{ duration: 0.25 }}
+                        className="flex flex-col items-center justify-center gap-2.5 w-full py-2"
+                      >
+                        <div
+                          className={cn(
+                            'w-13 h-13 rounded-2xl flex items-center justify-center border shadow-sm transition-transform duration-300 group-hover/canvas-card:scale-110',
+                            item.collapsedIconBg
+                          )}
+                        >
+                          <StepIcon size={24} />
+                        </div>
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-semibold text-center truncate max-w-[110px]">
+                          {item.shortTitle}
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Bottom Content Area */}
@@ -394,13 +425,13 @@ export function ProcessStepsSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="text-left"
+                        className="text-left w-full overflow-hidden"
                       >
-                        <p className="text-xs font-mono font-semibold text-neutral-400 uppercase tracking-wider truncate">
-                          Step {item.stepNum}
+                        <p className="text-[10px] font-mono font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+                          STEP {item.stepNum}
                         </p>
-                        <h4 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 truncate mt-0.5">
-                          {item.title}
+                        <h4 className="text-xs font-bold text-neutral-800 dark:text-neutral-200 truncate mt-0.5">
+                          {item.shortTitle}
                         </h4>
                       </motion.div>
                     )}
@@ -415,7 +446,7 @@ export function ProcessStepsSection() {
         <div className="mt-8 pt-6 border-t border-neutral-200/80 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-3">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>Interactive Workflow Engine • Hover to reveal canvas shimmer</span>
+            <span>Interactive Workflow Engine • Hover over any card to expand</span>
           </div>
           <div className="font-mono text-[11px]">
             StudyFlow Lifecycle Architecture v2.4
