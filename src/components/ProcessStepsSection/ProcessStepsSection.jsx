@@ -28,12 +28,12 @@ export function ProcessStepsSection() {
     {
       id: 'setup',
       stepNum: '01',
-      badge: 'PROJECT SETUP',
-      title: 'Describe Idea & Initialize Project',
-      tagline: 'Instant Cloud Workspace Provisioning',
+      badge: 'STEP 1',
+      title: 'Describe Your Idea & Start Your Project',
+      tagline: 'Quick Project Setup',
       description:
-        'Tell StudyFlow your academy name, subjects (JEE, NEET, Foundation), and branch locations. The platform automatically bootstraps your database schemas and design layout in seconds.',
-      bottomHighlight: 'Zero DB Config Required',
+        'Just enter your coaching institute name, subjects you teach (like JEE, NEET, or School Boards), and your branch location. We set up your whole project in seconds.',
+      bottomHighlight: 'Takes less than 1 minute • No setup hassle',
       activeBg: 'bg-gradient-to-br from-neutral-900 via-neutral-950 to-black text-white border-neutral-700',
       inactiveBg: 'bg-neutral-900 text-neutral-300 border-neutral-800',
       pillColor: 'bg-neutral-800 text-neutral-200 border-neutral-700',
@@ -45,7 +45,7 @@ export function ProcessStepsSection() {
               <span className="font-mono text-neutral-400">new_institute.init</span>
               <span className="inline-flex items-center gap-1 font-mono text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Live Schema
+                Live Setup
               </span>
             </div>
             <div className="space-y-1.5 text-[11px] font-mono text-neutral-300">
@@ -54,15 +54,15 @@ export function ProcessStepsSection() {
                 <span>create-institute "Apex Academy"</span>
               </div>
               <div className="text-neutral-400 text-[10px] pl-3">
-                → Provisioned MongoDB layout docs
+                → Created website project
               </div>
               <div className="text-neutral-400 text-[10px] pl-3">
-                → Generated lead router pipeline
+                → Set up admission pipeline
               </div>
             </div>
             <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-neutral-400">
-              <span>Target: JEE & NEET</span>
-              <span className="text-amber-400 font-semibold">120ms Ready</span>
+              <span>Courses: JEE & NEET</span>
+              <span className="text-amber-400 font-semibold">Ready in 2s</span>
             </div>
           </div>
         </div>
@@ -71,12 +71,12 @@ export function ProcessStepsSection() {
     {
       id: 'pages',
       stepNum: '02',
-      badge: 'PAGE SUITE',
-      title: 'Default Welcoming Pages Created',
-      tagline: 'High-Converting 5-Page Foundation',
+      badge: 'STEP 2',
+      title: 'Get Default Welcoming Pages Ready',
+      tagline: 'Pre-Made Pages Ready To Use',
       description:
-        'Your portal comes pre-bundled with 5 conversion-optimized pages: Admissions Hero, Faculty Dossiers, Live Batch Timetables, Verified Topper Hall of Fame, and Quick Enquiry Gate.',
-      bottomHighlight: 'Complete 5-Page Suite Live',
+        'Your website comes pre-built with essential pages already created for you: Admissions Home, About Us, Course & Batch Timings, Verified Toppers Wall, and Contact Page.',
+      bottomHighlight: '5 essential pages created automatically',
       activeBg: 'bg-gradient-to-br from-indigo-950 via-neutral-900 to-black text-white border-indigo-700/50',
       inactiveBg: 'bg-neutral-900 text-neutral-300 border-neutral-800',
       pillColor: 'bg-indigo-900/60 text-indigo-200 border-indigo-700/40',
@@ -109,12 +109,12 @@ export function ProcessStepsSection() {
     {
       id: 'layout',
       stepNum: '03',
-      badge: 'VISUAL IDE',
-      title: 'Edit Layout to Match Your Brand',
-      tagline: 'Real-Time Drag-and-Drop Canvas',
+      badge: 'STEP 3',
+      title: 'Edit Layout & Style to Your Need',
+      tagline: 'Simple Drag & Drop Editor',
       description:
-        'Open the macOS-style website IDE to adjust typography, modify brand colors, rearrange course sections, and inspect mobile/tablet responsiveness in real time.',
-      bottomHighlight: 'Instant Live Canvas Sync',
+        'Open our easy visual editor to change colors, adjust text, reorder course blocks, and preview how your website looks on phones, tablets, and computers with zero coding.',
+      bottomHighlight: 'Simple visual editor • No coding needed',
       activeBg: 'bg-gradient-to-br from-blue-950 via-neutral-900 to-black text-white border-blue-700/50',
       inactiveBg: 'bg-neutral-900 text-neutral-300 border-neutral-800',
       pillColor: 'bg-blue-900/60 text-blue-200 border-blue-700/40',
@@ -138,8 +138,8 @@ export function ProcessStepsSection() {
               </div>
             </div>
             <div className="mt-2 flex items-center justify-between text-[10px] text-neutral-400">
-              <span>Viewport: Desktop</span>
-              <span className="text-emerald-400 font-medium">Synced</span>
+              <span>Preview: Mobile & Desktop</span>
+              <span className="text-emerald-400 font-medium">Live</span>
             </div>
           </div>
         </div>
@@ -148,12 +148,12 @@ export function ProcessStepsSection() {
     {
       id: 'features',
       stepNum: '04',
-      badge: 'COACHING SUITE',
-      title: 'Attach Hyperlocal Coaching Tools',
-      tagline: 'Zero-Code Tuition Feature Modules',
+      badge: 'STEP 4',
+      title: 'Add Coaching Features You Want',
+      tagline: 'Turn Features On or Off',
       description:
-        'Plug in institute-critical capabilities with a single click: WhatsApp Lead Dispatcher (120ms router), DPP & Formula Booklet Lead Gates, and Student QR Attendance.',
-      bottomHighlight: '120ms WhatsApp Lead Routing',
+        'Choose the coaching features you want: send parent enquiries straight to WhatsApp, let students download formula sheets with phone number verify, and scan QR codes for attendance.',
+      bottomHighlight: 'WhatsApp admission leads • QR student check-in',
       activeBg: 'bg-gradient-to-br from-emerald-950 via-neutral-900 to-black text-white border-emerald-700/50',
       inactiveBg: 'bg-neutral-900 text-neutral-300 border-neutral-800',
       pillColor: 'bg-emerald-900/60 text-emerald-200 border-emerald-700/40',
@@ -188,12 +188,12 @@ export function ProcessStepsSection() {
     {
       id: 'deploy',
       stepNum: '05',
-      badge: 'EDGE HOSTING',
-      title: 'Host & Go Live in Seconds',
-      tagline: 'Automated Subdomain & SSL Provisioning',
+      badge: 'STEP 5',
+      title: 'Host & Go Live in One Click',
+      tagline: 'Publish to the Internet',
       description:
-        'Hit Publish to deploy your custom academy website to your dedicated subdomain (your-institute.studyflow.in) or custom domain with automatic SSL, HTTP/3, and edge CDN.',
-      bottomHighlight: 'Instant Global Edge CDN',
+        'Click the Publish button to launch your website immediately with your own academy web address (like your-institute.studyflow.in) or custom domain, complete with free secure SSL.',
+      bottomHighlight: 'Fast, secure & always online 24/7',
       activeBg: 'bg-gradient-to-br from-purple-950 via-neutral-900 to-black text-white border-purple-700/50',
       inactiveBg: 'bg-neutral-900 text-neutral-300 border-neutral-800',
       pillColor: 'bg-purple-900/60 text-purple-200 border-purple-700/40',
@@ -211,12 +211,12 @@ export function ProcessStepsSection() {
               </span>
             </div>
             <div className="p-2 rounded bg-purple-500/10 border border-purple-500/20 text-center">
-              <p className="text-[11px] font-semibold text-white">Global Edge Deployment</p>
-              <p className="text-[9px] text-purple-300 mt-0.5">Edge CDN Latency: 18ms</p>
+              <p className="text-[11px] font-semibold text-white">Live Website Online</p>
+              <p className="text-[9px] text-purple-300 mt-0.5">Loads fast on mobile and desktop</p>
             </div>
             <div className="mt-2.5 flex items-center justify-between text-[10px] text-neutral-400">
               <span>Uptime: 99.99%</span>
-              <span className="text-purple-400 font-semibold">Live Worldwide</span>
+              <span className="text-purple-400 font-semibold">Live Everywhere</span>
             </div>
           </div>
         </div>
@@ -236,15 +236,15 @@ export function ProcessStepsSection() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 mb-4">
             <Sparkles size={12} className="text-neutral-600 dark:text-neutral-400" />
-            <span>End-to-End Creation Process</span>
+            <span>Easy 5-Step Process</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.2]">
-            How It Works: Launch Your Academy Website
+            How It Works: Make Your Coaching Website
           </h2>
 
           <p className="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            From your first concept to a live coaching portal with admissions routing and attendance. Hover over each card to explore each phase of the workflow.
+            See step-by-step how to set up your institute, choose your pages, customize your design, and launch online. Hover over each card to explore.
           </p>
         </div>
 
