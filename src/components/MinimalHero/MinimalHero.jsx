@@ -53,6 +53,7 @@ import GroupedSidebar from '../ui/grouped-sidebar';
 import { MacbookScroll } from '../ui/macbook-scroll';
 import FeaturesSection from '../FeaturesSection/FeaturesSection';
 import ProcessStepsSection from '../ProcessStepsSection/ProcessStepsSection';
+import GrowthSection from '../GrowthSection/GrowthSection';
 import './MinimalHero.css';
 
 // Component Pill Tabs above the IDE window
@@ -1884,6 +1885,9 @@ export function MinimalHero() {
 
       {/* Website Creation Process Steps Section */}
       <ProcessStepsSection />
+
+      {/* Growth & Dual-Layer Analytics Section */}
+      <GrowthSection />
 
       {/* Minimal Footer */}
       <footer className="w-full border-t border-gray-100 py-6 text-center text-xs text-gray-400">
