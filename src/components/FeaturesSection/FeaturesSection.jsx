@@ -45,11 +45,11 @@ export function FeaturesSection() {
         "col-span-1 lg:col-span-3 border-b lg:border-b-0 lg:border-r border-neutral-200 dark:border-neutral-800",
     },
     {
-      title: "Subdomain Edge Deploy in Seconds",
+      title: "Deploy in seconds",
       description:
-        "Publish instantly to your branded subdomain (your-institute.studyflow.in) or custom domain with automated SSL, edge CDN caching, and high uptime.",
+        "Publish your academy website to your branded subdomain (your-institute.studyflow.in) or custom domain with automated SSL, edge CDN caching, and instant cloud provisioning.",
       skeleton: <SkeletonFour />,
-      className: "col-span-1 lg:col-span-3",
+      className: "col-span-1 lg:col-span-3 border-b lg:border-none",
     },
   ];
 
@@ -347,21 +347,13 @@ export const SkeletonThree = () => {
 /* Skeleton 4: Subdomain Deployment with 3D Cobe Globe */
 export const SkeletonFour = () => {
   return (
-    <div className="relative mt-4 flex h-72 sm:h-80 flex-col items-center justify-end overflow-hidden">
-      <div className="absolute top-2 left-0 right-0 text-center z-10 pointer-events-none px-2">
-        <span className="font-mono text-xs text-neutral-500 bg-neutral-100 px-2.5 py-1 rounded-full border border-neutral-200/70 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400">
-          Edge Nodes: Jaipur · Delhi · Kota · Mumbai · Bangalore
-        </span>
-      </div>
-
-      <div className="relative w-full flex items-center justify-center">
-        <Globe className="relative -bottom-24 sm:-bottom-28" />
-      </div>
+    <div className="relative mt-8 sm:mt-10 flex h-60 sm:h-64 flex-col items-center bg-transparent md:h-60">
+      <Globe className="absolute -right-10 -bottom-80 md:-right-10 md:-bottom-72 pointer-events-none" />
     </div>
   );
 };
 
-/* Interactive 3D Spinning Cobe Globe with Coaching Hub Markers */
+/* Interactive 3D Spinning Cobe Globe */
 export const Globe = ({ className }) => {
   const canvasRef = useRef(null);
 
@@ -371,30 +363,30 @@ export const Globe = ({ className }) => {
     if (!canvasRef.current) return;
 
     const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-      width: 550 * 2,
-      height: 550 * 2,
+      devicePixelRatio: 2,
+      width: 600 * 2,
+      height: 600 * 2,
       phi: 0,
-      theta: 0.25,
-      dark: 0,
+      theta: 0,
+      dark: 1,
       diffuse: 1.2,
-      mapSamples: 14000,
+      mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.93, 0.93, 0.95],
-      markerColor: [0.1, 0.1, 0.1],
-      glowColor: [0.96, 0.96, 0.98],
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.1, 0.8, 1],
+      glowColor: [1, 1, 1],
       markers: [
         { location: [26.9124, 75.7873], size: 0.08 }, // Jaipur
         { location: [28.6139, 77.209], size: 0.09 },  // Delhi
         { location: [25.18, 75.83], size: 0.09 },     // Kota
         { location: [19.076, 72.8777], size: 0.08 },  // Mumbai
         { location: [12.9716, 77.5946], size: 0.08 }, // Bangalore
-        { location: [25.5941, 85.1376], size: 0.07 }, // Patna
-        { location: [17.385, 78.4867], size: 0.07 },  // Hyderabad
+        { location: [37.7595, -122.4367], size: 0.04 },
+        { location: [40.7128, -74.006], size: 0.04 },
       ],
       onRender: (state) => {
         state.phi = phi;
-        phi += 0.005;
+        phi += 0.01;
       },
     });
 
@@ -406,7 +398,7 @@ export const Globe = ({ className }) => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 550, height: 550, maxWidth: "100%", aspectRatio: 1 }}
+      style={{ width: 600, height: 600, maxWidth: "none", aspectRatio: "1 / 1" }}
       className={className}
     />
   );
