@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { cn } from "../../lib/utils";
-import createGlobe from "cobe";
+import globePoints from "./globePoints.json";
 import { motion } from "framer-motion";
 import {
   CheckCircle2,
@@ -344,57 +344,291 @@ export const SkeletonThree = () => {
   );
 };
 
-/* Skeleton 4: Subdomain Deployment with 3D Cobe Globe */
+/* Skeleton 4: Subdomain Deployment with 3D Globe */
 export const SkeletonFour = () => {
   return (
-    <div className="relative mt-8 sm:mt-10 flex h-60 sm:h-64 flex-col items-center bg-transparent md:h-60">
-      <Globe className="absolute -right-10 -bottom-80 md:-right-10 md:-bottom-72 pointer-events-none" />
+    <div className="relative mt-2 flex h-60 sm:h-68 md:h-72 w-full overflow-hidden">
+      <Globe className="absolute -right-16 -bottom-36 sm:-right-12 sm:-bottom-32 md:-right-8 md:-bottom-28 w-[500px] h-[500px] sm:w-[580px] sm:h-[580px] md:w-[640px] md:h-[640px]" />
     </div>
   );
 };
 
-/* Interactive 3D Spinning Cobe Globe */
+/* Interactive 3D Spinning Dot-Matrix Globe */
 export const Globe = ({ className }) => {
   const canvasRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const phiRef = useRef(0);
+  const velocityRef = useRef(0.0035);
 
   useEffect(() => {
-    let phi = 0;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    if (!canvasRef.current) return;
+    let animId;
+    let time = 0;
 
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: 600,
-      height: 600,
-      phi: 0,
-      theta: 0,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 4000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.1, 0.8, 1],
-      glowColor: [1, 1, 1],
-      markers: [
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
-      ],
-      onRender: (state) => {
-        state.phi = phi;
-        phi += 0.01;
-      },
+    // Fixed forward tilt (so northern hemisphere faces forward-up)
+    const tilt = 0.38;
+    const cosT = Math.cos(tilt);
+    const sinT = Math.sin(tilt);
+
+    // Key routing hub markers (lat, lon)
+    const rawMarkers = [
+      { lat: 37.7595, lon: -122.4367, label: "San Francisco Edge" },
+      { lat: 40.7128, lon: -74.006, label: "New York CDN" },
+      { lat: 28.6139, lon: 77.209, label: "New Delhi Routing" },
+      { lat: 51.5074, lon: -0.1278, label: "London Gateway" },
+    ];
+
+    const markers = rawMarkers.map((m) => {
+      const phi = (90 - m.lat) * (Math.PI / 180);
+      const theta = (m.lon + 180) * (Math.PI / 180);
+      return {
+        x: -Math.sin(phi) * Math.cos(theta),
+        y: Math.cos(phi),
+        z: Math.sin(phi) * Math.sin(theta),
+        label: m.label,
+      };
     });
 
+    const render = () => {
+      time += 0.016;
+
+      // Handle inertial decay or auto-rotation
+      if (!isDraggingRef.current) {
+        if (Math.abs(velocityRef.current - 0.0035) > 0.0001) {
+          velocityRef.current = velocityRef.current * 0.95 + 0.0035 * 0.05;
+        }
+        phiRef.current += velocityRef.current;
+      }
+
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const displayWidth = Math.round(rect.width);
+      const displayHeight = Math.round(rect.height);
+
+      if (canvas.width !== displayWidth * dpr || canvas.height !== displayHeight * dpr) {
+        canvas.width = displayWidth * dpr;
+        canvas.height = displayHeight * dpr;
+      }
+
+      ctx.save();
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+      const cx = displayWidth / 2;
+      const cy = displayHeight / 2;
+      const radius = Math.min(displayWidth, displayHeight) * 0.44;
+
+      const currentPhi = phiRef.current;
+      const cosP = Math.cos(currentPhi);
+      const sinP = Math.sin(currentPhi);
+
+      // 1. Atmospheric Outer Glow
+      const outerGlow = ctx.createRadialGradient(cx, cy, radius * 0.9, cx, cy, radius * 1.15);
+      outerGlow.addColorStop(0, "rgba(255, 255, 255, 0.22)");
+      outerGlow.addColorStop(0.4, "rgba(255, 255, 255, 0.06)");
+      outerGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = outerGlow;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius * 1.15, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. 3D Dark Shaded Sphere Body
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.clip();
+
+      const bodyGrad = ctx.createRadialGradient(
+        cx - radius * 0.35,
+        cy - radius * 0.35,
+        radius * 0.05,
+        cx,
+        cy,
+        radius
+      );
+      bodyGrad.addColorStop(0, "#1f1f23");
+      bodyGrad.addColorStop(0.4, "#121215");
+      bodyGrad.addColorStop(0.75, "#09090b");
+      bodyGrad.addColorStop(1, "#020202");
+
+      ctx.fillStyle = bodyGrad;
+      ctx.fill();
+
+      // Subtle internal depth rings / longitude hints
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
+      ctx.lineWidth = 1;
+      for (let r = 0.25; r < 1; r += 0.25) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // 3. Continent Dot Matrix Projection
+      const len = globePoints.length;
+      for (let i = 0; i < len; i++) {
+        const pt = globePoints[i];
+        const px = pt[0];
+        const py = pt[1];
+        const pz = pt[2];
+
+        // Y-axis rotation
+        const rx = px * cosP + pz * sinP;
+        const rz = -px * sinP + pz * cosP;
+
+        // X-axis tilt
+        const ry = py * cosT - rz * sinT;
+        const finalZ = py * sinT + rz * cosT;
+
+        // Render points on front hemisphere
+        if (finalZ > -0.05) {
+          const sx = cx + rx * radius;
+          const sy = cy - ry * radius;
+
+          const depth = Math.max(0, finalZ);
+          const alpha = Math.min(1, Math.max(0.12, Math.pow(depth, 1.25) * 0.95 + 0.05));
+          const dotRadius = depth > 0.65 ? 1.45 : depth > 0.35 ? 1.2 : 0.95;
+
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
+          ctx.beginPath();
+          ctx.arc(sx, sy, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 4. Luminous Cloud / Atmospheric Crescent Rim Highlight
+      const rimHighlight = ctx.createLinearGradient(
+        cx - radius,
+        cy - radius,
+        cx + radius,
+        cy + radius
+      );
+      rimHighlight.addColorStop(0, "rgba(255, 255, 255, 0.35)");
+      rimHighlight.addColorStop(0.3, "rgba(255, 255, 255, 0.12)");
+      rimHighlight.addColorStop(0.7, "rgba(0, 0, 0, 0)");
+      rimHighlight.addColorStop(1, "rgba(0, 0, 0, 0.4)");
+
+      ctx.fillStyle = rimHighlight;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore(); // Exit sphere clipping
+
+      // 5. Crisp Outer Horizon Rim Ring
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius + 0.5, 0, Math.PI * 2);
+      const ringGrad = ctx.createLinearGradient(
+        cx - radius * 0.8,
+        cy - radius * 0.8,
+        cx + radius * 0.8,
+        cy + radius * 0.8
+      );
+      ringGrad.addColorStop(0, "rgba(255, 255, 255, 0.55)");
+      ringGrad.addColorStop(0.4, "rgba(255, 255, 255, 0.2)");
+      ringGrad.addColorStop(0.8, "rgba(255, 255, 255, 0.03)");
+      ringGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.strokeStyle = ringGrad;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+
+      // 6. Active Global Edge Markers with Radar Ripples
+      markers.forEach((m, idx) => {
+        const rx = m.x * cosP + m.z * sinP;
+        const rz = -m.x * sinP + m.z * cosP;
+        const ry = m.y * cosT - rz * sinT;
+        const finalZ = m.y * sinT + rz * cosT;
+
+        if (finalZ > 0.08) {
+          const mx = cx + rx * radius;
+          const my = cy - ry * radius;
+
+          // Expanding radar ripple
+          const pulseOffset = idx * 0.7;
+          const pulseCycle = (time * 1.4 + pulseOffset) % 2.0;
+          const pulseFrac = pulseCycle / 2.0;
+          const pulseR = 3.5 + pulseFrac * 14;
+          const pulseAlpha = Math.max(0, (1 - pulseFrac) * 0.65);
+
+          ctx.beginPath();
+          ctx.arc(mx, my, pulseR, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${pulseAlpha.toFixed(2)})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+
+          // Luminous cyan halo
+          const halo = ctx.createRadialGradient(mx, my, 0, mx, my, 8);
+          halo.addColorStop(0, "rgba(0, 229, 255, 0.9)");
+          halo.addColorStop(0.5, "rgba(0, 229, 255, 0.35)");
+          halo.addColorStop(1, "rgba(0, 229, 255, 0)");
+          ctx.fillStyle = halo;
+          ctx.beginPath();
+          ctx.arc(mx, my, 8, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Solid bright cyan point
+          ctx.beginPath();
+          ctx.arc(mx, my, 2.8, 0, Math.PI * 2);
+          ctx.fillStyle = "#00f0ff";
+          ctx.fill();
+
+          // White core center
+          ctx.beginPath();
+          ctx.arc(mx, my, 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.fill();
+        }
+      });
+
+      ctx.restore();
+      animId = requestAnimationFrame(render);
+    };
+
+    animId = requestAnimationFrame(render);
+
+    // Pointer Drag Handlers
+    const onPointerDown = (e) => {
+      isDraggingRef.current = true;
+      startXRef.current = e.clientX;
+      velocityRef.current = 0;
+    };
+
+    const onPointerMove = (e) => {
+      if (!isDraggingRef.current) return;
+      const dx = e.clientX - startXRef.current;
+      startXRef.current = e.clientX;
+      const deltaPhi = dx * 0.005;
+      phiRef.current += deltaPhi;
+      velocityRef.current = deltaPhi;
+    };
+
+    const onPointerUp = () => {
+      isDraggingRef.current = false;
+    };
+
+    canvas.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+
     return () => {
-      globe.destroy();
+      cancelAnimationFrame(animId);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
-      className={className}
+      className={cn("cursor-grab active:cursor-grabbing touch-none select-none", className)}
+      style={{ aspectRatio: 1 }}
     />
   );
 };
