@@ -1892,11 +1892,6 @@ export function MinimalHero() {
 
       {/* Pricing & Infrastructure Plans Section */}
       <PricingSection />
-
-      {/* Minimal Footer */}
-      <footer className="w-full border-t border-gray-100 py-6 text-center text-xs text-gray-400">
-        © 2026 StudyFlow Inc. Hyperlocal Coaching & Tuition Class Engine. All rights reserved.
-      </footer>
     </div>
   );
 }
