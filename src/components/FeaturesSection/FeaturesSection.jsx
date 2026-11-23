@@ -369,6 +369,29 @@ export const Globe = ({ className }) => {
 
     let animId;
     let time = 0;
+    let displayWidth = 300;
+    let displayHeight = 300;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // Measure dimensions via ResizeObserver to completely eliminate getBoundingClientRect layout thrashing
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width: w, height: h } = entry.contentRect;
+        if (w > 0 && h > 0) {
+          displayWidth = Math.round(w);
+          displayHeight = Math.round(h);
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = displayWidth * dpr;
+          canvas.height = displayHeight * dpr;
+        }
+      }
+    });
+
+    resizeObserver.observe(canvas);
+    displayWidth = Math.round(canvas.clientWidth || 300);
+    displayHeight = Math.round(canvas.clientHeight || 300);
+    canvas.width = displayWidth * dpr;
+    canvas.height = displayHeight * dpr;
 
     // Fixed forward tilt (so northern hemisphere faces forward-up)
     const tilt = 0.38;
@@ -394,6 +417,8 @@ export const Globe = ({ className }) => {
       };
     });
 
+    const len = globePoints.length;
+
     const render = () => {
       time += 0.016;
 
@@ -403,16 +428,6 @@ export const Globe = ({ className }) => {
           velocityRef.current = velocityRef.current * 0.95 + 0.0035 * 0.05;
         }
         phiRef.current += velocityRef.current;
-      }
-
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const displayWidth = Math.round(rect.width);
-      const displayHeight = Math.round(rect.height);
-
-      if (canvas.width !== displayWidth * dpr || canvas.height !== displayHeight * dpr) {
-        canvas.width = displayWidth * dpr;
-        canvas.height = displayHeight * dpr;
       }
 
       ctx.save();
@@ -459,7 +474,7 @@ export const Globe = ({ className }) => {
       ctx.fillStyle = bodyGrad;
       ctx.fill();
 
-      // Subtle internal depth rings / longitude hints
+      // Subtle internal depth rings
       ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
       ctx.lineWidth = 1;
       for (let r = 0.25; r < 1; r += 0.25) {
@@ -468,8 +483,11 @@ export const Globe = ({ className }) => {
         ctx.stroke();
       }
 
-      // 3. Continent Dot Matrix Projection
-      const len = globePoints.length;
+      // 3. Batched Continent Dot Matrix Projection (reduced to 3 depth batches instead of 1,500 individual draws)
+      const pathNear = new Path2D();
+      const pathMid = new Path2D();
+      const pathFar = new Path2D();
+
       for (let i = 0; i < len; i++) {
         const pt = globePoints[i];
         const px = pt[0];
@@ -484,21 +502,30 @@ export const Globe = ({ className }) => {
         const ry = py * cosT - rz * sinT;
         const finalZ = py * sinT + rz * cosT;
 
-        // Render points on front hemisphere
         if (finalZ > -0.05) {
           const sx = cx + rx * radius;
           const sy = cy - ry * radius;
-
           const depth = Math.max(0, finalZ);
-          const alpha = Math.min(1, Math.max(0.12, Math.pow(depth, 1.25) * 0.95 + 0.05));
-          const dotRadius = depth > 0.65 ? 1.45 : depth > 0.35 ? 1.2 : 0.95;
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
-          ctx.beginPath();
-          ctx.arc(sx, sy, dotRadius, 0, Math.PI * 2);
-          ctx.fill();
+          if (depth > 0.6) {
+            pathNear.moveTo(sx + 1.4, sy);
+            pathNear.arc(sx, sy, 1.4, 0, Math.PI * 2);
+          } else if (depth > 0.3) {
+            pathMid.moveTo(sx + 1.1, sy);
+            pathMid.arc(sx, sy, 1.1, 0, Math.PI * 2);
+          } else {
+            pathFar.moveTo(sx + 0.85, sy);
+            pathFar.arc(sx, sy, 0.85, 0, Math.PI * 2);
+          }
         }
       }
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
+      ctx.fill(pathNear);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.52)";
+      ctx.fill(pathMid);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.22)";
+      ctx.fill(pathFar);
 
       // 4. Luminous Cloud / Atmospheric Crescent Rim Highlight
       const rimHighlight = ctx.createLinearGradient(
@@ -592,13 +619,7 @@ export const Globe = ({ className }) => {
 
     animId = requestAnimationFrame(render);
 
-    // Pointer Drag Handlers
-    const onPointerDown = (e) => {
-      isDraggingRef.current = true;
-      startXRef.current = e.clientX;
-      velocityRef.current = 0;
-    };
-
+    // Pointer Drag Handlers (attached to window ONLY while actively dragging)
     const onPointerMove = (e) => {
       if (!isDraggingRef.current) return;
       const dx = e.clientX - startXRef.current;
@@ -610,14 +631,23 @@ export const Globe = ({ className }) => {
 
     const onPointerUp = () => {
       isDraggingRef.current = false;
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+    };
+
+    const onPointerDown = (e) => {
+      isDraggingRef.current = true;
+      startXRef.current = e.clientX;
+      velocityRef.current = 0;
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
     };
 
     canvas.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerup", onPointerUp);
 
     return () => {
       cancelAnimationFrame(animId);
+      resizeObserver.disconnect();
       canvas.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);

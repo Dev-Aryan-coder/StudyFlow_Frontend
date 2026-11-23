@@ -2,9 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { cn } from "../../lib/utils";
 
 export function CanvasRevealEffect({
-  animationSpeed = 3,
-  opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
-  colors = [[125, 211, 252]],
+  animationSpeed = 2.5,
+  colors = [[245, 158, 11], [251, 191, 36]],
   containerClassName,
   dotSize = 2,
   showGradient = true,
@@ -14,88 +13,109 @@ export function CanvasRevealEffect({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    let animationFrameId;
+    let animId;
     let time = 0;
+    let width = 0;
+    let height = 0;
 
-    const render = () => {
-      time += 0.016 * animationSpeed;
-
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const width = Math.round(rect.width);
-      const height = Math.round(rect.height);
-
-      if (width === 0 || height === 0) {
-        animationFrameId = requestAnimationFrame(render);
-        return;
-      }
-
-      if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-      }
-
-      ctx.save();
-      ctx.scale(dpr, dpr);
-      ctx.clearRect(0, 0, width, height);
-
-      const spacing = 12; // grid dot spacing
-      const cols = Math.ceil(width / spacing);
-      const rows = Math.ceil(height / spacing);
-
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = i * spacing + spacing / 2;
-          const y = j * spacing + spacing / 2;
-
-          // Multi-frequency wave formula for organic fluid shimmer
-          const wave1 = Math.sin(x * 0.035 + time * 0.8);
-          const wave2 = Math.cos(y * 0.035 - time * 0.6);
-          const wave3 = Math.sin((x + y) * 0.02 + time * 0.5);
-          const combined = (wave1 + wave2 + wave3) / 3;
-
-          // Normalized wave threshold
-          const intensity = Math.max(0, (combined + 1) / 2);
-
-          if (intensity > 0.35) {
-            // Pick color from palette based on position
-            const colorIdx = (i + j) % colors.length;
-            const [r, g, b] = colors[colorIdx];
-
-            // Opacity modulation
-            const alpha = Math.min(0.9, Math.pow(intensity, 1.8) * 0.85);
-            const currentSize = dotSize * (0.6 + intensity * 0.6);
-
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`;
-            ctx.beginPath();
-            ctx.arc(x, y, currentSize, 0, Math.PI * 2);
-            ctx.fill();
-          }
+    // Measure dimensions via ResizeObserver instead of calling getBoundingClientRect in RAF loop
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width: w, height: h } = entry.contentRect;
+        width = Math.round(w);
+        height = Math.round(h);
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (width > 0 && height > 0) {
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
         }
       }
+    });
 
-      ctx.restore();
-      animationFrameId = requestAnimationFrame(render);
+    resizeObserver.observe(canvas);
+
+    // Initial sizing
+    width = canvas.clientWidth || 300;
+    height = canvas.clientHeight || 450;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    const spacing = 18; // optimal dot spacing for buttery-smooth 60fps
+    const numColors = colors.length;
+
+    let lastTime = performance.now();
+
+    const render = (now) => {
+      const dt = Math.min(0.05, (now - lastTime) / 1000);
+      lastTime = now;
+      time += dt * animationSpeed;
+
+      if (width > 0 && height > 0) {
+        ctx.save();
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, width, height);
+
+        const cols = Math.ceil(width / spacing);
+        const rows = Math.ceil(height / spacing);
+
+        // Batch dots by color into Path2D to minimize GPU draw calls from hundreds to just numColors
+        const paths = Array.from({ length: numColors }, () => new Path2D());
+        const hasDots = Array.from({ length: numColors }, () => false);
+
+        for (let i = 0; i < cols; i++) {
+          const x = i * spacing + spacing / 2;
+          for (let j = 0; j < rows; j++) {
+            const y = j * spacing + spacing / 2;
+
+            // Fluid wave phase calculation
+            const wave = (Math.sin(x * 0.03 + time * 0.9) + Math.cos(y * 0.03 - time * 0.7)) * 0.5;
+
+            if (wave > 0.05) {
+              const colorIdx = (i + j) % numColors;
+              const radius = dotSize * (0.8 + wave * 0.5);
+              const path = paths[colorIdx];
+              path.moveTo(x + radius, y);
+              path.arc(x, y, radius, 0, Math.PI * 2);
+              hasDots[colorIdx] = true;
+            }
+          }
+        }
+
+        // Draw batched paths
+        for (let c = 0; c < numColors; c++) {
+          if (hasDots[c]) {
+            const [r, g, b] = colors[c];
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.65)`;
+            ctx.fill(paths[c]);
+          }
+        }
+
+        ctx.restore();
+      }
+
+      animId = requestAnimationFrame(render);
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    animId = requestAnimationFrame(render);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animId);
+      resizeObserver.disconnect();
     };
   }, [animationSpeed, colors, dotSize]);
 
   return (
-    <div className={cn("h-full relative bg-white w-full overflow-hidden", containerClassName)}>
+    <div className={cn("h-full relative bg-white w-full overflow-hidden pointer-events-none", containerClassName)}>
       <canvas
         ref={canvasRef}
         className="h-full w-full absolute inset-0 block pointer-events-none"
       />
       {showGradient && (
-        <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_15%,black)] bg-white/40 dark:bg-black/40 pointer-events-none" />
+        <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)] bg-white/70 dark:bg-black/60 pointer-events-none" />
       )}
     </div>
   );
