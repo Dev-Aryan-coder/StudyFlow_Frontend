@@ -284,48 +284,226 @@ export function MinimalHero() {
       {/* Hero Center Section - Expansive 90%+ Screen Width */}
       <main className="relative z-10 w-full max-w-[95vw] lg:max-w-[92vw] xl:max-w-[90vw] mx-auto px-2 sm:px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 flex flex-col items-center text-center">
 
-        {/* Main Headline */}
-        <motion.h1
-          variants={staggerContainerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.035em] text-black max-w-5xl leading-[1.2] mb-5 flex flex-col items-center justify-center gap-y-2 text-center"
-        >
-          {/* Line 1: Bring your [Flip Words] online, */}
-          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-x-1.5 sm:gap-x-3.5 gap-y-1">
-            <motion.span variants={staggerItemVariants} className="inline-block">Bring</motion.span>
-            <motion.span variants={staggerItemVariants} className="inline-block">your</motion.span>
-            <motion.span variants={staggerItemVariants} className="inline-block">
-              <ContainerFlipWords
-                words={["institute", "academy", "tuition", "coaching", "classroom"]}
-                interval={2600}
-              />
-            </motion.span>
-            <motion.span variants={staggerItemVariants} className="inline-block">online,</motion.span>
+        {/* Hero Header Area with Floating Blurred-Border Feature Widgets */}
+        <div className="relative w-full flex flex-col items-center">
+
+          {/* Left Feature Card: Student Registration Form (Positioned at Lower-Left cursor position) */}
+          <div className="hidden md:block absolute left-1 lg:left-6 xl:left-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="relative group cursor-default"
+            >
+              {/* Diffused Blurred Border Outer Aura */}
+              <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
+
+              {/* Main Frosted Glass Card Container */}
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden">
+                {/* Header Row */}
+                <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
+                      <FileText size={13} />
+                    </div>
+                    <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">Student Registration</span>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-[9px] font-mono font-medium text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-200/70 dark:border-emerald-800">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Live Form
+                  </span>
+                </div>
+
+                {/* Form Field Simulation */}
+                <div className="space-y-2 text-xs">
+                  <div>
+                    <label className="text-[10px] font-medium text-neutral-500 dark:text-neutral-400 block mb-1">
+                      Student Full Name
+                    </label>
+                    <div className="px-2.5 py-1.5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium text-[11px] truncate">
+                      Aarav Sharma
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 pt-0.5">
+                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
+                      Class 11 JEE
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
+                      Pinnacle Batch
+                    </span>
+                  </div>
+                </div>
+
+                {/* Footer Status */}
+                <div className="mt-3 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px]">
+                  <span className="text-neutral-500 dark:text-neutral-400">Admission Status</span>
+                  <span className="inline-flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 size={11} />
+                    <span>Verified</span>
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Line 2: in one place. */}
-          <div className="flex flex-wrap items-center justify-center gap-x-1.5 sm:gap-x-3.5">
-            <motion.span variants={staggerItemVariants} className="inline-block">in</motion.span>
-            <motion.span variants={staggerItemVariants} className="inline-block">one</motion.span>
-            <motion.span variants={staggerItemVariants} className="inline-block">place.</motion.span>
+          {/* Right Feature Card: Attendance Analytics Report (Positioned at Lower-Right cursor position) */}
+          <div className="hidden md:block absolute right-1 lg:right-6 xl:right-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="relative group cursor-default"
+            >
+              {/* Diffused Blurred Border Outer Aura */}
+              <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
+
+              {/* Main Frosted Glass Card Container */}
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden">
+                {/* Header Row */}
+                <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
+                      <TrendingUp size={13} />
+                    </div>
+                    <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">Attendance Analytics</span>
+                  </div>
+                  <span className="text-[9px] font-mono font-medium text-neutral-600 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200/60 dark:border-neutral-700/60">
+                    Weekly
+                  </span>
+                </div>
+
+                {/* Main Metric & Mini Sparkline Bar Chart */}
+                <div className="space-y-2">
+                  <div className="flex items-baseline justify-between">
+                    <div>
+                      <span className="text-xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 font-mono">
+                        96.4%
+                      </span>
+                      <span className="text-[10px] text-neutral-500 dark:text-neutral-400 block -mt-0.5">
+                        Average attendance rate
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">
+                      +3.2% vs last wk
+                    </span>
+                  </div>
+
+                  {/* 5-Day Attendance Sparkline Bars */}
+                  <div className="pt-1">
+                    <div className="flex items-end justify-between h-9 gap-1.5 px-1">
+                      {[
+                        { day: 'M', pct: 88 },
+                        { day: 'T', pct: 96 },
+                        { day: 'W', pct: 94 },
+                        { day: 'T', pct: 100 },
+                        { day: 'F', pct: 96 }
+                      ].map((bar, i) => (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                          <div
+                            className="w-full rounded-sm bg-neutral-800 dark:bg-neutral-200 transition-all duration-300"
+                            style={{ height: `${bar.pct}%` }}
+                          />
+                          <span className="text-[8px] font-mono text-neutral-400 dark:text-neutral-500">
+                            {bar.day}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Status */}
+                <div className="mt-2.5 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px]">
+                  <span className="text-neutral-500 dark:text-neutral-400">142 Present • 5 Absent</span>
+                  <span className="inline-flex items-center gap-1 font-medium text-neutral-700 dark:text-neutral-300 font-mono text-[9px]">
+                    <ShieldCheck size={11} className="text-emerald-600 dark:text-emerald-400" />
+                    <span>QR Synced</span>
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.h1>
 
-        {/* Subtitle */}
-        <p className="text-sm sm:text-lg md:text-xl text-gray-500 max-w-2xl mb-8 font-normal leading-relaxed px-2">
-          Build and customize your academy's official website in our visual editor IDE,
-          with real-time MongoDB schema sync and instant lead capture.
-        </p>
+          {/* Main Headline */}
+          <motion.h1
+            variants={staggerContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.035em] text-black max-w-5xl leading-[1.2] mb-5 flex flex-col items-center justify-center gap-y-2 text-center"
+          >
+            {/* Line 1: Bring your [Flip Words] online, */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-x-1.5 sm:gap-x-3.5 gap-y-1">
+              <motion.span variants={staggerItemVariants} className="inline-block">Bring</motion.span>
+              <motion.span variants={staggerItemVariants} className="inline-block">your</motion.span>
+              <motion.span variants={staggerItemVariants} className="inline-block">
+                <ContainerFlipWords
+                  words={["institute", "academy", "tuition", "coaching", "classroom"]}
+                  interval={2600}
+                />
+              </motion.span>
+              <motion.span variants={staggerItemVariants} className="inline-block">online,</motion.span>
+            </div>
 
-        {/* Dual Center Pill Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto max-w-xs sm:max-w-none mb-10 sm:mb-12">
-          <button className="w-full sm:w-auto bg-black text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]">
-            Start for free
-          </button>
-          <button className="w-full sm:w-auto bg-white text-gray-800 border border-gray-300 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gray-50 transition-all hover:scale-[1.02] active:scale-[0.98]">
-            Book a demo
-          </button>
+            {/* Line 2: in one place. */}
+            <div className="flex flex-wrap items-center justify-center gap-x-1.5 sm:gap-x-3.5">
+              <motion.span variants={staggerItemVariants} className="inline-block">in</motion.span>
+              <motion.span variants={staggerItemVariants} className="inline-block">one</motion.span>
+              <motion.span variants={staggerItemVariants} className="inline-block">place.</motion.span>
+            </div>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <p className="text-sm sm:text-lg md:text-xl text-gray-500 max-w-2xl mb-8 font-normal leading-relaxed px-2">
+            Build and customize your academy's official website in our visual editor IDE,
+            with real-time MongoDB schema sync and instant lead capture.
+          </p>
+
+          {/* Dual Center Pill Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto max-w-xs sm:max-w-none mb-10 sm:mb-12">
+            <button className="w-full sm:w-auto bg-black text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]">
+              Start for free
+            </button>
+            <button className="w-full sm:w-auto bg-white text-gray-800 border border-gray-300 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gray-50 transition-all hover:scale-[1.02] active:scale-[0.98]">
+              Book a demo
+            </button>
+          </div>
+
+          {/* Mobile-Only Feature Cards Display (Stacked below buttons on small devices) */}
+          <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-md mx-auto mb-10 px-2 text-left">
+            {/* Student Registration Form Mobile */}
+            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm">
+              <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
+                <div className="flex items-center gap-1.5">
+                  <FileText size={12} className="text-neutral-700 dark:text-neutral-300" />
+                  <span className="text-[11px] font-semibold text-neutral-900 dark:text-neutral-100">Student Registration</span>
+                </div>
+                <span className="text-[9px] font-mono font-medium text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1 py-0.5 rounded">
+                  Live
+                </span>
+              </div>
+              <p className="text-[11px] font-medium text-neutral-800 dark:text-neutral-200">Aarav Sharma</p>
+              <p className="text-[10px] text-neutral-500">Class 11 JEE • Pinnacle Batch</p>
+            </div>
+
+            {/* Attendance Analytics Report Mobile */}
+            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm">
+              <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
+                <div className="flex items-center gap-1.5">
+                  <TrendingUp size={12} className="text-neutral-700 dark:text-neutral-300" />
+                  <span className="text-[11px] font-semibold text-neutral-900 dark:text-neutral-100">Attendance Analytics</span>
+                </div>
+                <span className="text-[9px] font-mono font-semibold text-neutral-900 dark:text-neutral-100">
+                  96.4%
+                </span>
+              </div>
+              <p className="text-[11px] font-medium text-neutral-800 dark:text-neutral-200">Weekly Batch Rate</p>
+              <p className="text-[10px] text-neutral-500">142 Present • QR Gate Synced</p>
+            </div>
+          </div>
+
         </div>
 
         {/* Aceternity Macbook Scroll 3D Presentation with Sticky Locking & Fade-In-Down Option Navbar */}
