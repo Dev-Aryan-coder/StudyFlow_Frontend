@@ -287,8 +287,8 @@ export function MinimalHero() {
         {/* Hero Header Area with Floating Blurred-Border Feature Widgets */}
         <div className="relative w-full flex flex-col items-center">
 
-          {/* Left Feature Card: Student Registration Form (Slanted Lower-Left) */}
-          <div className="hidden md:block absolute left-1 lg:left-6 xl:left-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
+          {/* Left Feature Card: Student Registration Form (Soft-Blur Ambient Depth, Pushed to Far-Left Edge) */}
+          <div className="hidden md:block absolute -left-1 sm:-left-3 lg:-left-6 xl:-left-12 2xl:-left-16 bottom-1 sm:bottom-2 lg:bottom-4 z-20 text-left w-[240px] lg:w-[260px] select-none">
             <motion.div
               initial={{ opacity: 0, y: 24, rotate: -4 }}
               animate={{ opacity: 1, y: 0, rotate: -4 }}
@@ -299,48 +299,48 @@ export function MinimalHero() {
               {/* Diffused Blurred Border Outer Aura */}
               <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
 
-              {/* Main Frosted Glass Card Container */}
-              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_12px_32px_rgb(0,0,0,0.08)] overflow-hidden">
+              {/* Main Frosted Glass Card Container with Soft Depth-of-Field Blur (Unblurs on Hover) */}
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl p-3 shadow-[0_12px_32px_rgb(0,0,0,0.06)] overflow-hidden filter blur-[1.2px] opacity-70 group-hover:blur-none group-hover:opacity-100 transition-all duration-300">
                 {/* Header Row */}
-                <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
-                      <FileText size={13} />
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-5.5 h-5.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
+                      <FileText size={12} />
                     </div>
-                    <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">Student Registration</span>
+                    <span className="text-[11px] font-semibold text-neutral-900 dark:text-neutral-100">Student Registration</span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[9px] font-mono font-medium text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-200/70 dark:border-emerald-800">
+                  <span className="inline-flex items-center gap-1 text-[8.5px] font-mono font-medium text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-200/70 dark:border-emerald-800">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     Live Form
                   </span>
                 </div>
 
                 {/* Form Field Simulation */}
-                <div className="space-y-2 text-xs">
+                <div className="space-y-1.5 text-xs">
                   <div>
-                    <label className="text-[10px] font-medium text-neutral-500 dark:text-neutral-400 block mb-1">
+                    <label className="text-[9.5px] font-medium text-neutral-500 dark:text-neutral-400 block mb-0.5">
                       Student Full Name
                     </label>
-                    <div className="px-2.5 py-1.5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium text-[11px] truncate">
+                    <div className="px-2 py-1 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 font-medium text-[10.5px] truncate">
                       Aarav Sharma
                     </div>
                   </div>
 
                   <div className="flex items-center gap-1.5 pt-0.5">
-                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
+                    <span className="text-[9.5px] px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
                       Class 11 JEE
                     </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
+                    <span className="text-[9.5px] px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-200/60 dark:border-neutral-700/60">
                       Pinnacle Batch
                     </span>
                   </div>
                 </div>
 
                 {/* Footer Status */}
-                <div className="mt-3 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px]">
+                <div className="mt-2.5 pt-1.5 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[9.5px]">
                   <span className="text-neutral-500 dark:text-neutral-400">Admission Status</span>
                   <span className="inline-flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle2 size={11} />
+                    <CheckCircle2 size={10} />
                     <span>Verified</span>
                   </span>
                 </div>
@@ -348,8 +348,8 @@ export function MinimalHero() {
             </motion.div>
           </div>
 
-          {/* Right Feature Card: Attendance Analytics Report (Slanted Lower-Right) */}
-          <div className="hidden md:block absolute right-1 lg:right-6 xl:right-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
+          {/* Right Feature Card: Attendance Analytics Report (Soft-Blur Ambient Depth, Pushed to Far-Right Edge) */}
+          <div className="hidden md:block absolute -right-1 sm:-right-3 lg:-right-6 xl:-right-12 2xl:-right-16 bottom-1 sm:bottom-2 lg:bottom-4 z-20 text-left w-[240px] lg:w-[260px] select-none">
             <motion.div
               initial={{ opacity: 0, y: 24, rotate: 4 }}
               animate={{ opacity: 1, y: 0, rotate: 4 }}
@@ -360,40 +360,40 @@ export function MinimalHero() {
               {/* Diffused Blurred Border Outer Aura */}
               <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
 
-              {/* Main Frosted Glass Card Container */}
-              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_12px_32px_rgb(0,0,0,0.08)] overflow-hidden">
+              {/* Main Frosted Glass Card Container with Soft Depth-of-Field Blur (Unblurs on Hover) */}
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl p-3 shadow-[0_12px_32px_rgb(0,0,0,0.06)] overflow-hidden filter blur-[1.2px] opacity-70 group-hover:blur-none group-hover:opacity-100 transition-all duration-300">
                 {/* Header Row */}
-                <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
-                      <TrendingUp size={13} />
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-5.5 h-5.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center">
+                      <TrendingUp size={12} />
                     </div>
-                    <span className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">Attendance Analytics</span>
+                    <span className="text-[11px] font-semibold text-neutral-900 dark:text-neutral-100">Attendance Analytics</span>
                   </div>
-                  <span className="text-[9px] font-mono font-medium text-neutral-600 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200/60 dark:border-neutral-700/60">
+                  <span className="text-[8.5px] font-mono font-medium text-neutral-600 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200/60 dark:border-neutral-700/60">
                     Weekly
                   </span>
                 </div>
 
                 {/* Main Metric & Mini Sparkline Bar Chart */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <span className="text-xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 font-mono">
+                      <span className="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-100 font-mono">
                         96.4%
                       </span>
-                      <span className="text-[10px] text-neutral-500 dark:text-neutral-400 block -mt-0.5">
+                      <span className="text-[9.5px] text-neutral-500 dark:text-neutral-400 block -mt-0.5">
                         Average attendance rate
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">
+                    <span className="text-[9px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">
                       +3.2% vs last wk
                     </span>
                   </div>
 
                   {/* 5-Day Attendance Sparkline Bars */}
-                  <div className="pt-1">
-                    <div className="flex items-end justify-between h-9 gap-1.5 px-1">
+                  <div className="pt-0.5">
+                    <div className="flex items-end justify-between h-8 gap-1.5 px-0.5">
                       {[
                         { day: 'M', pct: 88 },
                         { day: 'T', pct: 96 },
@@ -401,12 +401,12 @@ export function MinimalHero() {
                         { day: 'T', pct: 100 },
                         { day: 'F', pct: 96 }
                       ].map((bar, i) => (
-                        <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                        <div key={i} className="flex-1 flex flex-col items-center gap-0.5 h-full justify-end">
                           <div
-                            className="w-full rounded-sm bg-neutral-800 dark:bg-neutral-200 transition-all duration-300"
+                            className="w-full rounded-xs bg-neutral-800 dark:bg-neutral-200 transition-all duration-300"
                             style={{ height: `${bar.pct}%` }}
                           />
-                          <span className="text-[8px] font-mono text-neutral-400 dark:text-neutral-500">
+                          <span className="text-[7.5px] font-mono text-neutral-400 dark:text-neutral-500">
                             {bar.day}
                           </span>
                         </div>
@@ -416,10 +416,10 @@ export function MinimalHero() {
                 </div>
 
                 {/* Footer Status */}
-                <div className="mt-2.5 pt-2 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[10px]">
+                <div className="mt-2 pt-1.5 border-t border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between text-[9.5px]">
                   <span className="text-neutral-500 dark:text-neutral-400">142 Present • 5 Absent</span>
-                  <span className="inline-flex items-center gap-1 font-medium text-neutral-700 dark:text-neutral-300 font-mono text-[9px]">
-                    <ShieldCheck size={11} className="text-emerald-600 dark:text-emerald-400" />
+                  <span className="inline-flex items-center gap-1 font-medium text-neutral-700 dark:text-neutral-300 font-mono text-[8.5px]">
+                    <ShieldCheck size={10} className="text-emerald-600 dark:text-emerald-400" />
                     <span>QR Synced</span>
                   </span>
                 </div>
