@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '../../lib/utils';
 import {
   FolderKanban,
   CheckSquare,
@@ -262,9 +263,25 @@ export function MinimalHero() {
   };
 
   return (
-    <div className="minimal-hero-container">
+    <div className="minimal-hero-container relative">
+      {/* Aceternity Grid Background behind Hero Banner */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] sm:h-[54rem] md:h-[62rem] overflow-hidden z-0">
+        <div
+          className={cn(
+            "absolute inset-0",
+            "[background-size:40px_40px]",
+            "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
+            "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
+          )}
+        />
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black" />
+        {/* Soft bottom fade into page */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent to-white dark:to-black" />
+      </div>
+
       {/* Hero Center Section - Expansive 90%+ Screen Width */}
-      <main className="w-full max-w-[95vw] lg:max-w-[92vw] xl:max-w-[90vw] mx-auto px-2 sm:px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 flex flex-col items-center text-center">
+      <main className="relative z-10 w-full max-w-[95vw] lg:max-w-[92vw] xl:max-w-[90vw] mx-auto px-2 sm:px-4 pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 flex flex-col items-center text-center">
 
         {/* Main Headline */}
         <motion.h1
