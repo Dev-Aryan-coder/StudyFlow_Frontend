@@ -287,20 +287,20 @@ export function MinimalHero() {
         {/* Hero Header Area with Floating Blurred-Border Feature Widgets */}
         <div className="relative w-full flex flex-col items-center">
 
-          {/* Left Feature Card: Student Registration Form (Positioned at Lower-Left cursor position) */}
+          {/* Left Feature Card: Student Registration Form (Slanted Lower-Left) */}
           <div className="hidden md:block absolute left-1 lg:left-6 xl:left-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, rotate: -4 }}
+              animate={{ opacity: 1, y: 0, rotate: -4 }}
               transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              whileHover={{ y: -6, rotate: -1, scale: 1.02, transition: { duration: 0.25 } }}
               className="relative group cursor-default"
             >
               {/* Diffused Blurred Border Outer Aura */}
               <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
 
               {/* Main Frosted Glass Card Container */}
-              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden">
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_12px_32px_rgb(0,0,0,0.08)] overflow-hidden">
                 {/* Header Row */}
                 <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
                   <div className="flex items-center gap-2">
@@ -348,20 +348,20 @@ export function MinimalHero() {
             </motion.div>
           </div>
 
-          {/* Right Feature Card: Attendance Analytics Report (Positioned at Lower-Right cursor position) */}
+          {/* Right Feature Card: Attendance Analytics Report (Slanted Lower-Right) */}
           <div className="hidden md:block absolute right-1 lg:right-6 xl:right-14 bottom-2 lg:bottom-4 z-20 text-left w-[255px] lg:w-[275px] select-none">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, rotate: 4 }}
+              animate={{ opacity: 1, y: 0, rotate: 4 }}
               transition={{ duration: 0.65, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              whileHover={{ y: -6, rotate: 1, scale: 1.02, transition: { duration: 0.25 } }}
               className="relative group cursor-default"
             >
               {/* Diffused Blurred Border Outer Aura */}
               <div className="absolute -inset-[3px] rounded-2xl bg-neutral-900/10 dark:bg-white/10 blur-[6px] pointer-events-none transition-opacity duration-300 group-hover:bg-neutral-900/15" />
 
               {/* Main Frosted Glass Card Container */}
-              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden">
+              <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/85 dark:bg-neutral-950/85 backdrop-blur-xl p-3.5 shadow-[0_12px_32px_rgb(0,0,0,0.08)] overflow-hidden">
                 {/* Header Row */}
                 <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-200/80 dark:border-neutral-800">
                   <div className="flex items-center gap-2">
@@ -474,7 +474,7 @@ export function MinimalHero() {
           {/* Mobile-Only Feature Cards Display (Stacked below buttons on small devices) */}
           <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-md mx-auto mb-10 px-2 text-left">
             {/* Student Registration Form Mobile */}
-            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm">
+            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm transform -rotate-1">
               <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
                 <div className="flex items-center gap-1.5">
                   <FileText size={12} className="text-neutral-700 dark:text-neutral-300" />
@@ -489,7 +489,7 @@ export function MinimalHero() {
             </div>
 
             {/* Attendance Analytics Report Mobile */}
-            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm">
+            <div className="relative rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl p-3 shadow-sm transform rotate-1">
               <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-neutral-200/80 dark:border-neutral-800">
                 <div className="flex items-center gap-1.5">
                   <TrendingUp size={12} className="text-neutral-700 dark:text-neutral-300" />
