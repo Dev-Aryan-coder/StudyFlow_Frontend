@@ -364,25 +364,20 @@ export const Globe = ({ className }) => {
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 600 * 2,
-      height: 600 * 2,
+      width: 600,
+      height: 600,
       phi: 0,
       theta: 0,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 16000,
+      mapSamples: 4000,
       mapBrightness: 6,
       baseColor: [0.3, 0.3, 0.3],
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        { location: [26.9124, 75.7873], size: 0.08 }, // Jaipur
-        { location: [28.6139, 77.209], size: 0.09 },  // Delhi
-        { location: [25.18, 75.83], size: 0.09 },     // Kota
-        { location: [19.076, 72.8777], size: 0.08 },  // Mumbai
-        { location: [12.9716, 77.5946], size: 0.08 }, // Bangalore
-        { location: [37.7595, -122.4367], size: 0.04 },
-        { location: [40.7128, -74.006], size: 0.04 },
+        { location: [37.7595, -122.4367], size: 0.03 },
+        { location: [40.7128, -74.006], size: 0.1 },
       ],
       onRender: (state) => {
         state.phi = phi;
@@ -398,7 +393,7 @@ export const Globe = ({ className }) => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: "none", aspectRatio: "1 / 1" }}
+      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
       className={className}
     />
   );
