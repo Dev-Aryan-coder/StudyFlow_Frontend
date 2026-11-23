@@ -1,11 +1,43 @@
 /* Navbar.css - 1-to-1 dedicated styles for top navigation bar */
+
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-wrapper.is-scrolled {
+  top: 12px;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-wrapper.is-scrolled {
+    top: 16px;
+    padding: 0 1.5rem;
+  }
+}
+
 .navbar-container {
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #f3f4f6;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  border-radius: 0px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Floating Pill Shape when scrolled (border-radius: 20px) */
+.navbar-container.pill-navbar {
+  max-width: 76rem;
+  margin: 0 auto;
+  border-radius: 20px !important;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
 }
 
 .navbar-inner {
@@ -16,12 +48,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 640px) {
   .navbar-inner {
     padding: 0 1.5rem;
     height: 5rem; /* 80px on tablet/desktop */
+  }
+}
+
+/* Compact inner height when in pill state */
+.navbar-container.pill-navbar .navbar-inner {
+  height: 3.6rem; /* ~58px on mobile */
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .navbar-container.pill-navbar .navbar-inner {
+    height: 4rem; /* 64px on desktop */
+    padding: 0 1.75rem;
   }
 }
 
@@ -50,6 +96,16 @@
   border-bottom: 1px solid #e5e7eb;
   padding: 1.25rem 1.5rem 1.75rem 1.5rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.navbar-mobile-menu.pill-mobile-menu {
+  border-radius: 0 0 20px 20px;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: none;
 }
 
 .navbar-mobile-link {
