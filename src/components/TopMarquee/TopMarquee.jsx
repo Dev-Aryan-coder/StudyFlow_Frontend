@@ -41,7 +41,7 @@ export function TopMarquee() {
           return (
             <div key={`${item.id}-${idx}`} className="top-marquee-item">
               <span className="top-marquee-tag">{item.tag}</span>
-              <IconComponent size={12} className="top-marquee-icon text-zinc-400" />
+              <IconComponent size={14} className="top-marquee-icon text-zinc-400" />
               <span className="top-marquee-text">{item.text}</span>
               <span className="top-marquee-bullet" aria-hidden="true">•</span>
             </div>
