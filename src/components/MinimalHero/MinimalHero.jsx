@@ -54,6 +54,7 @@ import { MacbookScroll } from '../ui/macbook-scroll';
 import FeaturesSection from '../FeaturesSection/FeaturesSection';
 import ProcessStepsSection from '../ProcessStepsSection/ProcessStepsSection';
 import GrowthSection from '../GrowthSection/GrowthSection';
+import PricingSection from '../PricingSection/PricingSection';
 import './MinimalHero.css';
 
 // Component Pill Tabs above the IDE window
@@ -1888,6 +1889,9 @@ export function MinimalHero() {
 
       {/* Growth & Dual-Layer Analytics Section */}
       <GrowthSection />
+
+      {/* Pricing & Infrastructure Plans Section */}
+      <PricingSection />
 
       {/* Minimal Footer */}
       <footer className="w-full border-t border-gray-100 py-6 text-center text-xs text-gray-400">
