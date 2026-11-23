@@ -347,8 +347,8 @@ export const SkeletonThree = () => {
 /* Skeleton 4: Subdomain Deployment with 3D Globe */
 export const SkeletonFour = () => {
   return (
-    <div className="relative mt-2 flex h-60 sm:h-68 md:h-72 w-full overflow-hidden">
-      <Globe className="absolute -right-16 -bottom-36 sm:-right-12 sm:-bottom-32 md:-right-8 md:-bottom-28 w-[500px] h-[500px] sm:w-[580px] sm:h-[580px] md:w-[640px] md:h-[640px]" />
+    <div className="relative mt-4 flex h-60 sm:h-64 md:h-72 w-full overflow-hidden">
+      <Globe className="absolute -right-8 -bottom-[320px] sm:-right-6 sm:-bottom-[300px] md:-right-4 md:-bottom-[280px] w-[540px] h-[540px] sm:w-[580px] sm:h-[580px] md:w-[620px] md:h-[620px]" />
     </div>
   );
 };
