@@ -28,6 +28,33 @@ export function ProcessStepsSection() {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
   };
 
+  // Staggered animation variants for cascading card entry
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 35,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   const steps = [
     {
       id: 'setup',
@@ -282,8 +309,12 @@ export function ProcessStepsSection() {
           </p>
         </div>
 
-        {/* Expandable Hover Cards Deck with Native CSS Flex Transitions (Zero Lag) */}
-        <div
+        {/* Expandable Hover Cards Deck with Cascading Staggered Entrance Animation */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
           onMouseLeave={handleMouseLeave}
           className="flex flex-col lg:flex-row gap-4 h-auto lg:h-[500px] xl:h-[530px] w-full"
         >
@@ -292,8 +323,9 @@ export function ProcessStepsSection() {
             const StepIcon = item.icon;
 
             return (
-              <div
+              <motion.div
                 key={item.id}
+                variants={cardVariants}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onClick={() => setActiveStep(index)}
                 className={cn(
@@ -407,10 +439,10 @@ export function ProcessStepsSection() {
                     </div>
                   )}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Bottom Helper Bar */}
         <div className="mt-8 pt-6 border-t border-neutral-200/80 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-3">
