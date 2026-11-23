@@ -50,6 +50,7 @@ import {
 import ContainerFlipWords from '../ContainerFlipWords/ContainerFlipWords';
 import GroupedSidebar from '../ui/grouped-sidebar';
 import { MacbookScroll } from '../ui/macbook-scroll';
+import FeaturesSection from '../FeaturesSection/FeaturesSection';
 import './MinimalHero.css';
 
 // Component Pill Tabs above the IDE window
@@ -1687,6 +1688,9 @@ export function MinimalHero() {
         </MacbookScroll>
 
       </main>
+
+      {/* Coaching-First Digital Features Section */}
+      <FeaturesSection />
 
       {/* Minimal Footer */}
       <footer className="w-full border-t border-gray-100 py-6 text-center text-xs text-gray-400">
