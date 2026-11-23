@@ -22,15 +22,15 @@ import operationalAnalyticsImg from '../../assets/studyflow_operations_analytics
 
 export function GrowthSection() {
   const websiteMetrics = [
-    { label: 'Total Visits', value: '14,820', change: '+18.4%', changeType: 'positive' },
-    { label: 'Enquiry Rate', value: '12.4%', change: '+3.1%', changeType: 'positive' },
-    { label: 'Mobile Share', value: '78.2%', change: 'High intent', changeType: 'neutral' },
+    { label: 'Total Visits', value: '14,820', change: '+18.4% this month', changeType: 'positive' },
+    { label: 'Inquiry Rate', value: '12.4%', change: 'High interest', changeType: 'positive' },
+    { label: 'Mobile Users', value: '78.2%', change: 'Phone visitors', changeType: 'neutral' },
   ];
 
   const operationalMetrics = [
-    { label: 'Daily Attendance', value: '96.4%', change: 'QR Synced', changeType: 'positive' },
+    { label: 'Daily Attendance', value: '96.4%', change: 'QR checked in', changeType: 'positive' },
     { label: 'Active Students', value: '248', change: '8 Batches', changeType: 'neutral' },
-    { label: 'Fee Collection', value: '94.8%', change: '+6.2%', changeType: 'positive' },
+    { label: 'Fee Collection', value: '94.8%', change: 'On track', changeType: 'positive' },
   ];
 
   return (
@@ -45,15 +45,15 @@ export function GrowthSection() {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 mb-4">
             <TrendingUp size={12} className="text-neutral-600 dark:text-neutral-400" />
-            <span>Growth & Intelligence Engine</span>
+            <span>Tracking Your Growth</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.2]">
-            Complete Operational & Traffic Growth
+            See How Your Website & Coaching Are Growing
           </h2>
 
           <p className="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            Track prospective parent discovery on your published website and monitor internal student operations from a single unified control room.
+            Check how many parents visit your website every day and manage all your student attendance, fees, and batches from one simple place.
           </p>
         </div>
 
@@ -85,7 +85,7 @@ export function GrowthSection() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold text-neutral-900 dark:text-white">Website & Traffic Analytics</h4>
-                      <p className="text-xs text-neutral-500 max-w-sm mt-1">Real-time visitor telemetry, lead conversion rates, and mobile traffic analysis.</p>
+                      <p className="text-xs text-neutral-500 max-w-sm mt-1">See how many parents visit your website and send inquiries.</p>
                     </div>
                   </div>
                 </div>
@@ -113,35 +113,35 @@ export function GrowthSection() {
                 className="space-y-6 text-left"
               >
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wider uppercase bg-neutral-100 text-neutral-700 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:border-neutral-700">
-                  <span>Public Website Layer • 01</span>
+                  <span>Website Visitors • 01</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-950 dark:text-white leading-tight">
-                  Hosted Website & Traffic Analytics
+                  Website Visitors & Admission Inquiries
                 </h3>
 
                 <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                  Understand where prospective students and parents discover your academy. Monitor visitor volumes, lead capture velocity, and mobile responsiveness in real time.
+                  See how parents find your coaching online. Know how many people visit your website, how many send admission inquiries, and how well it opens on mobile phones.
                 </p>
 
                 {/* Key Capability Points */}
                 <div className="space-y-3.5 pt-2">
                   {[
                     {
-                      title: 'Live Visitor Volume & Page Impressions',
-                      desc: 'Track daily and monthly traffic to your branded website address with detailed geographic retention.',
+                      title: 'Daily & Monthly Website Visitors',
+                      desc: 'See how many parents and students visit your coaching website each day and each month.',
                     },
                     {
-                      title: 'Admission Lead Conversion Rate',
-                      desc: 'Measure exact conversions on WhatsApp booking buttons, online admission inquiry forms, and gated brochure downloads.',
+                      title: 'New Admission Leads & Inquiries',
+                      desc: 'Count how many parents click the WhatsApp button, fill out admission forms, or download your prospectus.',
                     },
                     {
-                      title: 'Device & Mobile Breakdown',
-                      desc: 'Inspect user device distribution across phones, tablets, and laptops to ensure lightning-fast mobile loading.',
+                      title: 'Phone & Computer Visitors',
+                      desc: 'See whether parents are browsing your website on mobile phones or laptops so it always loads quickly.',
                     },
                     {
-                      title: 'Flyer QR Attribution Tracking',
-                      desc: 'Know exactly how many local parents scanned printed admission flyers and newspaper ads through dynamic QR analytics.',
+                      title: 'Pamphlet & Banner QR Scans',
+                      desc: 'Know exactly how many local parents scanned the QR codes printed on your admission posters, banners, and flyers.',
                     },
                   ].map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-3">
@@ -162,7 +162,7 @@ export function GrowthSection() {
                     href="#features"
                     className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white hover:underline underline-offset-4"
                   >
-                    <span>Explore Public Website Telemetry</span>
+                    <span>Learn more about website visitors</span>
                     <ArrowRight size={14} />
                   </a>
                 </div>
@@ -186,35 +186,35 @@ export function GrowthSection() {
                 className="space-y-6 text-left"
               >
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wider uppercase bg-neutral-100 text-neutral-700 border border-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:border-neutral-700">
-                  <span>Internal Portal Layer • 02</span>
+                  <span>Daily Coaching Work • 02</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-950 dark:text-white leading-tight">
-                  User & Operational Analytics
+                  Student Attendance, Batches & Fees
                 </h3>
 
                 <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                  Bridge public discovery directly to internal coaching operations. Manage daily batch attendance, student resource engagement, and fee collection from a unified dashboard.
+                  Connect your website directly to your daily coaching work. Track student attendance, share study notes, and check fee collections in one dashboard.
                 </p>
 
                 {/* Key Capability Points */}
                 <div className="space-y-3.5 pt-2">
                   {[
                     {
-                      title: 'Smart QR & Biometric Attendance Telemetry',
-                      desc: 'Automate student check-in with QR scans and trigger instant arrival confirmations to parents on WhatsApp.',
+                      title: 'Quick QR Attendance Check-In',
+                      desc: 'Students scan a QR code when entering class. Parents get a quick WhatsApp message confirming their arrival.',
                     },
                     {
-                      title: 'DPP & Study Material Engagement',
-                      desc: 'Track which students download chapter formulas, daily practice problem sheets, and past examination papers.',
+                      title: 'Study Notes & Formula Downloads',
+                      desc: 'See which students download your practice sheets, chapter formulas, and study material.',
                     },
                     {
-                      title: 'Fee Collection & Defaulter Tracking',
-                      desc: 'Monitor collected fees vs. upcoming milestones with automated GST digital receipts and scheduled installment alerts.',
+                      title: 'Fee Payments & Due Reminders',
+                      desc: 'Track paid fees, pending installments, and send automatic fee reminder messages to parents on WhatsApp.',
                     },
                     {
-                      title: 'Batch Capacity & Seat Utilization',
-                      desc: 'Prevent classroom overcrowding with visual seat threshold gauges and real-time room capacity limits.',
+                      title: 'Batch Seats & Class Limits',
+                      desc: 'Know exactly how many seats are left in each batch so your classrooms never get overcrowded.',
                     },
                   ].map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-3">
@@ -235,7 +235,7 @@ export function GrowthSection() {
                     href="#features"
                     className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white hover:underline underline-offset-4"
                   >
-                    <span>View Institute Operational Controls</span>
+                    <span>Learn more about coaching tools</span>
                     <ArrowRight size={14} />
                   </a>
                 </div>
@@ -266,7 +266,7 @@ export function GrowthSection() {
                     </div>
                     <div>
                       <h4 className="text-base font-bold text-neutral-900 dark:text-white">Internal Operational Analytics</h4>
-                      <p className="text-xs text-neutral-500 max-w-sm mt-1">Smart QR attendance logs, fee milestone tracking, and batch capacity utilization.</p>
+                      <p className="text-xs text-neutral-500 max-w-sm mt-1">Track student attendance, fee collections, and batch sizes.</p>
                     </div>
                   </div>
                 </div>
