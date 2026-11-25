@@ -1,0 +1,7 @@
+# StudyFlow Search Engine Crawling Directives
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://studyflow.in/sitemap.xml

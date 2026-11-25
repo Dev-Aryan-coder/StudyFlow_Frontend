@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import contactSupportHeroImg from '../../assets/contact_support_hero.jpg';
 import contactApi from '../../api/contactApi';
+import SEO from '../../components/SEO/SEO';
 import { cn } from '../../lib/utils';
 import './ContactUs.css';
 
@@ -147,8 +148,45 @@ export function ContactUs() {
     }
   ];
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "StudyFlow Contact & Coaching Support",
+    "description": "24/7 technical assistance, WhatsApp helpline, and bespoke custom feature requests for coaching institutes.",
+    "url": "https://studyflow.in/contact-us",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "StudyFlow Technologies",
+      "telephone": "+91-80-4123-4567",
+      "email": "support@studyflow.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4th Floor, Innovation Hub, Koramangala 5th Block",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560095",
+        "addressCountry": "IN"
+      }
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-white dark:bg-black text-neutral-900 dark:text-neutral-100 overflow-hidden">
+      <SEO
+        title="Contact Us — 24/7 Coaching Support & Custom Feature Requests | StudyFlow"
+        description="Get in touch with StudyFlow for coaching website onboarding, WhatsApp helpline support, or submit bespoke custom feature requests for your coaching institute."
+        keywords={[
+          "contact studyflow",
+          "coaching website support",
+          "custom coaching feature request",
+          "WhatsApp coaching helpline",
+          "studyflow customer care",
+          "coaching software Bangalore",
+          "tuition support helpline"
+        ]}
+        canonical="https://studyflow.in/contact-us"
+        jsonLd={contactSchema}
+      />
       
       {/* =========================================================================
           SECTION 1: HERO BANNER (White, Grey, Black Monochromatic Palette)
