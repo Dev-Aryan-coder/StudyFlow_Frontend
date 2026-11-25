@@ -24,7 +24,7 @@ import {
   AlertCircle,
   X
 } from 'lucide-react';
-import contactHeroBannerImg from '../../assets/contact_hero_banner.jpg';
+import contactSupportHeroImg from '../../assets/contact_support_hero.jpg';
 import { cn } from '../../lib/utils';
 import './ContactUs.css';
 
@@ -198,30 +198,77 @@ export function ContactUs() {
               </div>
             </div>
 
-            {/* Right Visual Image & Interactive Chat Composition (From User Reference) */}
+            {/* Right Visual Image & Interactive Chat Composition (Unsplash Support Hero) */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 shadow-2xl bg-neutral-100 dark:bg-neutral-900">
+              <div className="relative rounded-3xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 shadow-2xl bg-neutral-900 group">
+                
+                {/* Clean Unsplash Support Hero Portrait */}
                 <img
-                  src={contactHeroBannerImg}
-                  alt="StudyFlow Instant Support Assistant"
-                  className="w-full h-auto object-cover max-h-[500px]"
+                  src={contactSupportHeroImg}
+                  alt="StudyFlow Customer Support Specialist"
+                  className="w-full h-[460px] sm:h-[500px] object-cover object-top filter brightness-[0.98]"
                 />
                 
-                {/* Overlay Floating Interactive Speech Prompts for High Fidelity */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-5 sm:p-6">
+                {/* Ambient Soft Vignette & Lighting */}
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-neutral-950/30 pointer-events-none" />
+
+                {/* Floating Pill: AI Assistant Active */}
+                <div className="absolute top-5 left-5 z-20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-white/50 dark:border-neutral-700 shadow-lg text-xs font-semibold text-neutral-800 dark:text-neutral-200">
+                    <Sparkles size={13} className="text-violet-600 dark:text-violet-400" />
+                    <span>AI Assistant</span>
+                    <Headphones size={13} className="text-neutral-500" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
+                  </div>
+                </div>
+
+                {/* Floating Chat Bubble 1: Assistant Greeting */}
+                <div className="absolute top-24 left-5 z-20 max-w-[280px] sm:max-w-[320px]">
+                  <div className="p-3 rounded-2xl rounded-tl-xs bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-white/50 dark:border-neutral-800 shadow-xl flex items-center gap-2.5 text-xs text-neutral-800 dark:text-neutral-200">
+                    <div className="w-6 h-6 rounded-lg bg-violet-600 text-white flex items-center justify-center shrink-0">
+                      <Sparkles size={13} />
+                    </div>
+                    <span className="font-medium leading-relaxed">
+                      Hello! How can I help your coaching center today?
+                    </span>
+                  </div>
+                </div>
+
+                {/* Floating Chat Bubble 2: User Inquiry */}
+                <div className="absolute top-40 right-5 z-20 max-w-[260px] sm:max-w-[290px]">
+                  <div className="p-3 rounded-2xl rounded-tr-xs bg-violet-600 text-white shadow-xl flex items-center gap-2.5 text-xs">
+                    <div className="w-6 h-6 rounded-lg bg-white/20 text-white flex items-center justify-center shrink-0">
+                      <User size={13} />
+                    </div>
+                    <span className="font-medium leading-relaxed">
+                      Hey, how do I connect our coaching domain?
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom Interactive Prompt Pill (Matching user screenshot) */}
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-30">
                   <div
-                    onClick={() => setIsAiModalOpen(true)}
-                    className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-white/40 dark:border-neutral-700 shadow-xl flex items-center justify-between cursor-pointer hover:scale-[1.01] transition-transform"
+                    onClick={() => {
+                      setAiChatMessages([
+                        { sender: 'ai', text: 'Hello! I am your StudyFlow Assistant. How can I help your coaching academy today?' },
+                        { sender: 'user', text: 'What do I need to get my coaching institute online?' },
+                        { sender: 'ai', text: 'To launch your coaching institute online with StudyFlow, all you need is your institute name and WhatsApp contact! We provide a free branded subdomain, automated cloud hosting on AWS, student admission forms, and QR attendance portals in just 2 minutes.' }
+                      ]);
+                      setIsAiModalOpen(true);
+                    }}
+                    className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-700 shadow-2xl flex items-center justify-between gap-3 cursor-pointer hover:scale-[1.01] transition-transform select-none"
                   >
-                    <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-neutral-800 dark:text-neutral-200">
-                      <Sparkles size={16} className="text-violet-600 dark:text-violet-400 shrink-0" />
+                    <div className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white">
+                      <Sparkles size={17} className="text-violet-600 dark:text-violet-400 shrink-0" />
                       <span>What do I need to get my coaching institute online?</span>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center shrink-0">
-                      <ArrowRight size={14} />
+                    <div className="w-9 h-9 rounded-full bg-violet-600 hover:bg-violet-700 text-white flex items-center justify-center shrink-0 shadow-md transition-colors">
+                      <ArrowRight size={15} />
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
