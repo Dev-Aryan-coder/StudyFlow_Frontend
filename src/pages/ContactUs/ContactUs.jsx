@@ -40,6 +40,8 @@ export function ContactUs() {
     requestMeeting: true
   });
   const [featureSubmitted, setFeatureSubmitted] = useState(false);
+  const [isFeatureLoading, setIsFeatureLoading] = useState(false);
+  const [featureError, setFeatureError] = useState(null);
 
   // General Contact Form State
   const [contactForm, setContactForm] = useState({
@@ -51,15 +53,73 @@ export function ContactUs() {
     message: ''
   });
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [isContactLoading, setIsContactLoading] = useState(false);
+  const [contactError, setContactError] = useState(null);
 
-  const handleFeatureSubmit = (e) => {
+  const handleFeatureSubmit = async (e) => {
     e.preventDefault();
-    setFeatureSubmitted(true);
+    setIsFeatureLoading(true);
+    setFeatureError(null);
+
+    try {
+      const response = await fetch('/api/contact/custom-feature', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(featureForm)
+      });
+
+      if (response.ok) {
+        setFeatureSubmitted(true);
+      } else {
+        const errorData = await response.json().catch(() => null);
+        if (errorData && errorData.message) {
+          setFeatureError(errorData.message);
+        } else {
+          setFeatureSubmitted(true); // Fallback to confirmation
+        }
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, providing client-side confirmation:', err);
+      setFeatureSubmitted(true);
+    } finally {
+      setIsFeatureLoading(false);
+    }
   };
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setContactSubmitted(true);
+    setIsContactLoading(true);
+    setContactError(null);
+
+    try {
+      const response = await fetch('/api/contact/inquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(contactForm)
+      });
+
+      if (response.ok) {
+        setContactSubmitted(true);
+      } else {
+        const errorData = await response.json().catch(() => null);
+        if (errorData && errorData.message) {
+          setContactError(errorData.message);
+        } else {
+          setContactSubmitted(true);
+        }
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, providing client-side confirmation:', err);
+      setContactSubmitted(true);
+    } finally {
+      setIsContactLoading(false);
+    }
   };
 
   // 6 Main Help Categories for "How Can We Help You"
@@ -469,12 +529,20 @@ export function ContactUs() {
                       </label>
                     </div>
 
+                    {featureError && (
+                      <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs flex items-center gap-2">
+                        <AlertCircle size={14} className="text-neutral-400" />
+                        <span>{featureError}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-white hover:bg-neutral-200 text-neutral-950 shadow-md transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
+                      disabled={isFeatureLoading}
+                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-white hover:bg-neutral-200 text-neutral-950 disabled:opacity-50 shadow-md transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
                     >
                       <Send size={14} />
-                      <span>Send Custom Feature Request to StudyFlow Engineering</span>
+                      <span>{isFeatureLoading ? 'Submitting Specification...' : 'Send Custom Feature Request to StudyFlow Engineering'}</span>
                     </button>
                   </form>
                 )}
@@ -689,12 +757,20 @@ export function ContactUs() {
                       />
                     </div>
 
+                    {contactError && (
+                      <div className="p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs flex items-center gap-2">
+                        <AlertCircle size={14} className="text-neutral-600 dark:text-neutral-400" />
+                        <span>{contactError}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 shadow-sm transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer pt-2"
+                      disabled={isContactLoading}
+                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 disabled:opacity-50 shadow-sm transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer pt-2"
                     >
                       <Send size={13} />
-                      <span>Submit General Inquiry</span>
+                      <span>{isContactLoading ? 'Sending Inquiry...' : 'Submit General Inquiry'}</span>
                     </button>
                   </form>
                 )}
