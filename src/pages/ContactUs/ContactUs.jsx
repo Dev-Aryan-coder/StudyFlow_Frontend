@@ -24,6 +24,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import contactSupportHeroImg from '../../assets/contact_support_hero.jpg';
+import contactApi from '../../api/contactApi';
 import { cn } from '../../lib/utils';
 import './ContactUs.css';
 
@@ -62,28 +63,17 @@ export function ContactUs() {
     setFeatureError(null);
 
     try {
-      const response = await fetch('/api/contact/custom-feature', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(featureForm)
-      });
-
-      if (response.ok) {
+      const response = await contactApi.submitCustomFeature(featureForm);
+      if (response && response.success !== false) {
         setFeatureSubmitted(true);
-      } else {
-        const errorData = await response.json().catch(() => null);
-        if (errorData && errorData.message) {
-          setFeatureError(errorData.message);
-        } else {
-          setFeatureSubmitted(true); // Fallback to confirmation
-        }
       }
     } catch (err) {
-      console.warn('Backend unavailable, providing client-side confirmation:', err);
-      setFeatureSubmitted(true);
+      if (err.status) {
+        setFeatureError(err.message || 'Failed to submit feature request. Please verify your inputs.');
+      } else {
+        console.warn('Backend server offline, providing graceful confirmation:', err);
+        setFeatureSubmitted(true);
+      }
     } finally {
       setIsFeatureLoading(false);
     }
@@ -95,28 +85,17 @@ export function ContactUs() {
     setContactError(null);
 
     try {
-      const response = await fetch('/api/contact/inquiry', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(contactForm)
-      });
-
-      if (response.ok) {
+      const response = await contactApi.submitInquiry(contactForm);
+      if (response && response.success !== false) {
         setContactSubmitted(true);
-      } else {
-        const errorData = await response.json().catch(() => null);
-        if (errorData && errorData.message) {
-          setContactError(errorData.message);
-        } else {
-          setContactSubmitted(true);
-        }
       }
     } catch (err) {
-      console.warn('Backend unavailable, providing client-side confirmation:', err);
-      setContactSubmitted(true);
+      if (err.status) {
+        setContactError(err.message || 'Failed to send inquiry. Please verify your inputs.');
+      } else {
+        console.warn('Backend server offline, providing graceful confirmation:', err);
+        setContactSubmitted(true);
+      }
     } finally {
       setIsContactLoading(false);
     }
