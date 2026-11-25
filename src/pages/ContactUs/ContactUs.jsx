@@ -21,8 +21,7 @@ import {
   Zap,
   Building,
   User,
-  AlertCircle,
-  X
+  ShieldCheck
 } from 'lucide-react';
 import contactSupportHeroImg from '../../assets/contact_support_hero.jpg';
 import { cn } from '../../lib/utils';
@@ -52,34 +51,6 @@ export function ContactUs() {
     message: ''
   });
   const [contactSubmitted, setContactSubmitted] = useState(false);
-
-  // Interactive AI Assistant Chat Modal State
-  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
-  const [aiChatMessages, setAiChatMessages] = useState([
-    { sender: 'ai', text: 'Hello! I am your StudyFlow Assistant. How can I help your coaching academy today?' }
-  ]);
-  const [aiInputText, setAiInputText] = useState('');
-
-  const handleSendAiMessage = (e) => {
-    e?.preventDefault();
-    if (!aiInputText.trim()) return;
-
-    const userMsg = aiInputText;
-    setAiChatMessages((prev) => [...prev, { sender: 'user', text: userMsg }]);
-    setAiInputText('');
-
-    setTimeout(() => {
-      let reply = 'Thank you for your message! Our coaching onboarding specialist will assist you with connecting your domain, setting up WhatsApp lead routing, and activating your flat ₹100 new institute discount.';
-      if (userMsg.toLowerCase().includes('domain')) {
-        reply = 'You can connect any custom domain (.com, .in, .edu.in) directly from your StudyFlow dashboard with automated SSL generation and zero downtime.';
-      } else if (userMsg.toLowerCase().includes('whatsapp') || userMsg.toLowerCase().includes('lead')) {
-        reply = 'The WhatsApp Admission Router dispatches student inquiries directly to your counselor in sub-120ms with automated webhook triggers.';
-      } else if (userMsg.toLowerCase().includes('price') || userMsg.toLowerCase().includes('discount') || userMsg.toLowerCase().includes('cost')) {
-        reply = 'Our plans start at ₹299/mo (Starter), ₹599/mo (Academy), and ₹899/mo (Premier). All new institutes receive an automatic flat ₹100 discount!';
-      }
-      setAiChatMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
-    }, 600);
-  };
 
   const handleFeatureSubmit = (e) => {
     e.preventDefault();
@@ -141,17 +112,17 @@ export function ContactUs() {
     <div className="w-full min-h-screen bg-white dark:bg-black text-neutral-900 dark:text-neutral-100 overflow-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO BANNER (Modeled precisely on the provided visual reference)
+          SECTION 1: HERO BANNER (White, Grey, Black Monochromatic Palette)
          ========================================================================= */}
-      <section className="relative w-full py-14 lg:py-20 bg-gradient-to-b from-neutral-50 via-white to-white dark:from-neutral-950 dark:via-black dark:to-black border-b border-neutral-200/80 dark:border-neutral-800">
+      <section className="relative w-full py-14 lg:py-20 bg-neutral-50/60 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-800">
         <div className="relative z-10 w-full max-w-[96vw] lg:max-w-[92vw] xl:max-w-[88vw] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-violet-50 text-violet-800 border border-violet-200/80 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-900/60">
-                <Sparkles size={13} className="text-violet-600 dark:text-violet-400" />
-                <span>Instant answers, whenever you need</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-neutral-200/70 text-neutral-800 border border-neutral-300 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800">
+                <Headphones size={13} className="text-neutral-700 dark:text-neutral-300" />
+                <span>Dedicated Coaching Support & Helpline</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-[1.15]">
@@ -159,22 +130,22 @@ export function ContactUs() {
               </h1>
 
               <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xl">
-                Just tell StudyFlow Assistant what you want to do, and it can take care of it — connecting domains, configuring DNS, activating WhatsApp admission routers, deploying QR attendance, and more. Chat with our team or simply ask StudyFlow Assistant so you can get online faster and focus on growing your coaching institute.
+                Have questions about setting up your coaching institute website, connecting your domain, configuring WhatsApp admission routers, or managing student attendance? Our technical support team is here to assist you every step of the way.
               </p>
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => setIsAiModalOpen(true)}
-                  className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-violet-600 hover:bg-violet-700 text-white shadow-lg shadow-violet-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 cursor-pointer"
+                <a
+                  href="#contact-form"
+                  className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-neutral-950 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 shadow-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 cursor-pointer"
                 >
-                  <Sparkles size={16} />
-                  <span>Chat with StudyFlow Assistant</span>
-                </button>
+                  <MessageCircle size={16} />
+                  <span>Send Us a Message</span>
+                </a>
 
                 <a
                   href="#how-can-we-help"
-                  className="px-5 py-3.5 rounded-2xl font-semibold text-sm border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors flex items-center gap-2"
+                  className="px-5 py-3.5 rounded-2xl font-semibold text-sm border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center gap-2"
                 >
                   <span>Browse Help Topics</span>
                   <ArrowRight size={14} />
@@ -185,22 +156,22 @@ export function ContactUs() {
               <div className="pt-4 flex items-center gap-6 text-xs text-neutral-500 border-t border-neutral-200/80 dark:border-neutral-800">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>120ms Response Time</span>
+                  <span>Under 15 Min Response</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Headphones size={13} />
                   <span>24/7 Coaching Helpline</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-emerald-600" />
-                  <span>Free Setup & Migration</span>
+                  <CheckCircle2 size={13} className="text-neutral-700 dark:text-neutral-300" />
+                  <span>Free Setup Assistance</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual Image & Interactive Chat Composition (Unsplash Support Hero) */}
+            {/* Right Visual Image & Support Badge Composition */}
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 shadow-2xl bg-neutral-900 group">
+              <div className="relative rounded-3xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 shadow-xl bg-neutral-900 group">
                 
                 {/* Clean Unsplash Support Hero Portrait */}
                 <img
@@ -209,64 +180,32 @@ export function ContactUs() {
                   className="w-full h-[460px] sm:h-[500px] object-cover object-top filter brightness-[0.98]"
                 />
                 
-                {/* Ambient Soft Vignette & Lighting */}
+                {/* Ambient Soft Vignette */}
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-neutral-950/30 pointer-events-none" />
 
-                {/* Floating Pill: AI Assistant Active */}
+                {/* Floating Pill: Support Desk Online */}
                 <div className="absolute top-5 left-5 z-20">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-white/50 dark:border-neutral-700 shadow-lg text-xs font-semibold text-neutral-800 dark:text-neutral-200">
-                    <Sparkles size={13} className="text-violet-600 dark:text-violet-400" />
-                    <span>AI Assistant</span>
-                    <Headphones size={13} className="text-neutral-500" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-700 shadow-md text-xs font-semibold text-neutral-900 dark:text-neutral-100">
+                    <Headphones size={13} className="text-neutral-700 dark:text-neutral-300" />
+                    <span>Support Desk Online</span>
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
                   </div>
                 </div>
 
-                {/* Floating Chat Bubble 1: Assistant Greeting */}
-                <div className="absolute top-24 left-5 z-20 max-w-[280px] sm:max-w-[320px]">
-                  <div className="p-3 rounded-2xl rounded-tl-xs bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-white/50 dark:border-neutral-800 shadow-xl flex items-center gap-2.5 text-xs text-neutral-800 dark:text-neutral-200">
-                    <div className="w-6 h-6 rounded-lg bg-violet-600 text-white flex items-center justify-center shrink-0">
-                      <Sparkles size={13} />
-                    </div>
-                    <span className="font-medium leading-relaxed">
-                      Hello! How can I help your coaching center today?
-                    </span>
-                  </div>
-                </div>
-
-                {/* Floating Chat Bubble 2: User Inquiry */}
-                <div className="absolute top-40 right-5 z-20 max-w-[260px] sm:max-w-[290px]">
-                  <div className="p-3 rounded-2xl rounded-tr-xs bg-violet-600 text-white shadow-xl flex items-center gap-2.5 text-xs">
-                    <div className="w-6 h-6 rounded-lg bg-white/20 text-white flex items-center justify-center shrink-0">
-                      <User size={13} />
-                    </div>
-                    <span className="font-medium leading-relaxed">
-                      Hey, how do I connect our coaching domain?
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bottom Interactive Prompt Pill (Matching user screenshot) */}
+                {/* Bottom Callout Bar: Need assistance */}
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-30">
-                  <div
-                    onClick={() => {
-                      setAiChatMessages([
-                        { sender: 'ai', text: 'Hello! I am your StudyFlow Assistant. How can I help your coaching academy today?' },
-                        { sender: 'user', text: 'What do I need to get my coaching institute online?' },
-                        { sender: 'ai', text: 'To launch your coaching institute online with StudyFlow, all you need is your institute name and WhatsApp contact! We provide a free branded subdomain, automated cloud hosting on AWS, student admission forms, and QR attendance portals in just 2 minutes.' }
-                      ]);
-                      setIsAiModalOpen(true);
-                    }}
-                    className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-700 shadow-2xl flex items-center justify-between gap-3 cursor-pointer hover:scale-[1.01] transition-transform select-none"
+                  <a
+                    href="#how-can-we-help"
+                    className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-700 shadow-xl flex items-center justify-between gap-3 hover:bg-white dark:hover:bg-neutral-800 transition-colors select-none group"
                   >
                     <div className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white">
-                      <Sparkles size={17} className="text-violet-600 dark:text-violet-400 shrink-0" />
+                      <HelpCircle size={17} className="text-neutral-700 dark:text-neutral-300 shrink-0" />
                       <span>What do I need to get my coaching institute online?</span>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-violet-600 hover:bg-violet-700 text-white flex items-center justify-center shrink-0 shadow-md transition-colors">
-                      <ArrowRight size={15} />
+                    <div className="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 flex items-center justify-center shrink-0 shadow-xs group-hover:translate-x-0.5 transition-transform">
+                      <ArrowRight size={14} />
                     </div>
-                  </div>
+                  </a>
                 </div>
 
               </div>
@@ -284,14 +223,14 @@ export function ContactUs() {
           
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 mb-3">
-              <HelpCircle size={13} className="text-amber-500" />
+              <HelpCircle size={13} className="text-neutral-600 dark:text-neutral-400" />
               <span>Knowledge Base & Guidance</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 dark:text-white">
               How can we help you today?
             </h2>
             <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
-              Select an area below to get immediate technical walkthroughs, onboarding guidance, or speak with our specialized engineering team.
+              Select an area below to get immediate setup assistance, technical guidance, or speak with our onboarding team.
             </p>
           </div>
 
@@ -302,14 +241,14 @@ export function ContactUs() {
               return (
                 <div
                   key={idx}
-                  className="group relative p-6 rounded-3xl bg-neutral-50/80 dark:bg-neutral-900/50 border border-neutral-200/90 dark:border-neutral-800 hover:border-violet-500/50 transition-all duration-300 hover:shadow-lg flex flex-col justify-between"
+                  className="group relative p-6 rounded-3xl bg-neutral-50/80 dark:bg-neutral-900/50 border border-neutral-200/90 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-900 dark:text-white group-hover:bg-violet-600 group-hover:text-white group-hover:border-violet-600 transition-colors shadow-xs">
+                      <div className="w-12 h-12 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-900 dark:text-white group-hover:bg-neutral-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-neutral-950 transition-colors shadow-xs">
                         <Icon size={22} />
                       </div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-neutral-200/60 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-neutral-200/60 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
                         {cat.badge}
                       </span>
                     </div>
@@ -326,7 +265,7 @@ export function ContactUs() {
                   <div className="pt-6 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
                     <a
                       href="#contact-form"
-                      className="text-xs font-semibold text-violet-600 dark:text-violet-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1.5"
+                      className="text-xs font-semibold text-neutral-900 dark:text-white group-hover:translate-x-0.5 transition-transform flex items-center gap-1.5"
                     >
                       <span>{cat.action}</span>
                       <ArrowRight size={13} />
@@ -341,20 +280,16 @@ export function ContactUs() {
       </section>
 
       {/* =========================================================================
-          SECTION 3: REQUEST A CUSTOM FEATURE FOR STUDYFLOW (User Specific Request)
+          SECTION 3: REQUEST A CUSTOM FEATURE FOR STUDYFLOW (Monochromatic Dark Theme)
          ========================================================================= */}
       <section id="custom-feature-request" className="relative w-full py-20 lg:py-28 bg-neutral-950 text-white border-b border-neutral-800 overflow-hidden">
-        {/* Subtle Background Glow */}
-        <div className="pointer-events-none absolute -top-32 right-1/4 w-[500px] h-[300px] bg-rose-500/10 blur-[130px] rounded-full" />
-        <div className="pointer-events-none absolute -bottom-32 left-1/4 w-[500px] h-[300px] bg-violet-500/10 blur-[130px] rounded-full" />
-
         <div className="relative z-10 w-full max-w-[96vw] lg:max-w-[92vw] xl:max-w-[88vw] mx-auto px-4 sm:px-6">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* Left Description Column */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-neutral-900 border border-neutral-800 text-rose-400">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-neutral-900 border border-neutral-800 text-neutral-300">
                 <Sliders size={13} />
                 <span>Bespoke Engineering for Your Academy</span>
               </div>
@@ -369,22 +304,22 @@ export function ContactUs() {
 
               <div className="space-y-3.5 pt-2 text-xs text-neutral-300">
                 <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-neutral-800 text-neutral-200 flex items-center justify-center shrink-0 mt-0.5 border border-neutral-700">
                     <Check size={12} strokeWidth={2.6} />
                   </div>
-                  <span>Direct consultation with StudyFlow core software architects</span>
+                  <span>Direct consultation with StudyFlow software architects</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-neutral-800 text-neutral-200 flex items-center justify-center shrink-0 mt-0.5 border border-neutral-700">
                     <Check size={12} strokeWidth={2.6} />
                   </div>
                   <span>Fast prototyping & sandboxed testing on your subdomain</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-neutral-800 text-neutral-200 flex items-center justify-center shrink-0 mt-0.5 border border-neutral-700">
                     <Check size={12} strokeWidth={2.6} />
                   </div>
-                  <span>Seamless synchronization with your MongoDB student databases</span>
+                  <span>Seamless synchronization with your student databases</span>
                 </div>
               </div>
             </div>
@@ -395,7 +330,7 @@ export function ContactUs() {
                 
                 {featureSubmitted ? (
                   <div className="py-12 text-center space-y-4">
-                    <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                    <div className="w-14 h-14 rounded-full bg-neutral-800 border border-neutral-700 text-white flex items-center justify-center mx-auto">
                       <CheckCircle2 size={32} />
                     </div>
                     <h3 className="text-xl font-bold text-white">Custom Feature Request Received</h3>
@@ -422,7 +357,7 @@ export function ContactUs() {
                           value={featureForm.instituteName}
                           onChange={(e) => setFeatureForm({ ...featureForm, instituteName: e.target.value })}
                           placeholder="e.g. Apex IIT Academy"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-neutral-400 text-xs"
                         />
                       </div>
 
@@ -436,7 +371,7 @@ export function ContactUs() {
                           value={featureForm.contactName}
                           onChange={(e) => setFeatureForm({ ...featureForm, contactName: e.target.value })}
                           placeholder="e.g. Prof. Rajesh Sharma"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-neutral-400 text-xs"
                         />
                       </div>
                     </div>
@@ -452,7 +387,7 @@ export function ContactUs() {
                           value={featureForm.whatsappNumber}
                           onChange={(e) => setFeatureForm({ ...featureForm, whatsappNumber: e.target.value })}
                           placeholder="e.g. +91 98765 43210"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-neutral-400 text-xs"
                         />
                       </div>
 
@@ -466,7 +401,7 @@ export function ContactUs() {
                           value={featureForm.email}
                           onChange={(e) => setFeatureForm({ ...featureForm, email: e.target.value })}
                           placeholder="director@yourcoaching.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-neutral-400 text-xs"
                         />
                       </div>
                     </div>
@@ -479,7 +414,7 @@ export function ContactUs() {
                         <select
                           value={featureForm.featureCategory}
                           onChange={(e) => setFeatureForm({ ...featureForm, featureCategory: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white focus:outline-hidden focus:border-neutral-400 text-xs"
                         >
                           <option value="attendance">Smart Attendance & Biometrics</option>
                           <option value="whatsapp">Custom WhatsApp Automations & Templates</option>
@@ -498,7 +433,7 @@ export function ContactUs() {
                         <select
                           value={featureForm.timeline}
                           onChange={(e) => setFeatureForm({ ...featureForm, timeline: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white focus:outline-hidden focus:border-rose-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white focus:outline-hidden focus:border-neutral-400 text-xs"
                         >
                           <option value="urgent">Urgent (New batch starting within 7 days)</option>
                           <option value="standard">Standard (Next 2-3 weeks)</option>
@@ -517,7 +452,7 @@ export function ContactUs() {
                         value={featureForm.description}
                         onChange={(e) => setFeatureForm({ ...featureForm, description: e.target.value })}
                         placeholder="Please describe how this feature should work, who will use it (teachers, parents, or students), and any existing software/hardware it needs to integrate with..."
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-rose-500 text-xs leading-relaxed"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-800/80 border border-neutral-700/80 text-white placeholder-neutral-500 focus:outline-hidden focus:border-neutral-400 text-xs leading-relaxed"
                       />
                     </div>
 
@@ -527,7 +462,7 @@ export function ContactUs() {
                         id="reqMeeting"
                         checked={featureForm.requestMeeting}
                         onChange={(e) => setFeatureForm({ ...featureForm, requestMeeting: e.target.checked })}
-                        className="rounded border-neutral-700 text-rose-600 focus:ring-rose-500"
+                        className="rounded border-neutral-700 text-neutral-900 focus:ring-neutral-500"
                       />
                       <label htmlFor="reqMeeting" className="text-neutral-300 text-[11px] cursor-pointer">
                         Schedule a 15-minute Google Meet call with our engineering team to discuss this spec
@@ -536,7 +471,7 @@ export function ContactUs() {
 
                     <button
                       type="submit"
-                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-600/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
+                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-white hover:bg-neutral-200 text-neutral-950 shadow-md transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
                     >
                       <Send size={14} />
                       <span>Send Custom Feature Request to StudyFlow Engineering</span>
@@ -564,7 +499,7 @@ export function ContactUs() {
             <div className="lg:col-span-5 space-y-8">
               <div>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 mb-3">
-                  <PhoneCall size={12} className="text-emerald-600" />
+                  <PhoneCall size={12} className="text-neutral-700 dark:text-neutral-300" />
                   <span>General Support & Direct Helpline</span>
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white">
@@ -580,7 +515,7 @@ export function ContactUs() {
                 
                 {/* WhatsApp Support */}
                 <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-200/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center shrink-0">
                     <MessageCircle size={20} />
                   </div>
                   <div>
@@ -595,7 +530,7 @@ export function ContactUs() {
 
                 {/* Email Support */}
                 <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-200/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center shrink-0">
                     <Mail size={20} />
                   </div>
                   <div>
@@ -610,7 +545,7 @@ export function ContactUs() {
 
                 {/* Phone Call */}
                 <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-200/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center shrink-0">
                     <PhoneCall size={20} />
                   </div>
                   <div>
@@ -647,7 +582,7 @@ export function ContactUs() {
                 
                 {contactSubmitted ? (
                   <div className="py-12 text-center space-y-3">
-                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+                    <div className="w-12 h-12 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-white flex items-center justify-center mx-auto">
                       <CheckCircle2 size={28} />
                     </div>
                     <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Message Sent Successfully</h3>
@@ -678,7 +613,7 @@ export function ContactUs() {
                           value={contactForm.fullName}
                           onChange={(e) => setContactForm({ ...contactForm, fullName: e.target.value })}
                           placeholder="e.g. S. K. Verma"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs"
                         />
                       </div>
 
@@ -691,7 +626,7 @@ export function ContactUs() {
                           value={contactForm.instituteName}
                           onChange={(e) => setContactForm({ ...contactForm, instituteName: e.target.value })}
                           placeholder="e.g. Verma Classes"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs"
                         />
                       </div>
                     </div>
@@ -707,7 +642,7 @@ export function ContactUs() {
                           value={contactForm.email}
                           onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                           placeholder="name@gmail.com"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs"
                         />
                       </div>
 
@@ -721,7 +656,7 @@ export function ContactUs() {
                           value={contactForm.phone}
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                           placeholder="+91 98765 00000"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs"
                         />
                       </div>
                     </div>
@@ -736,7 +671,7 @@ export function ContactUs() {
                         value={contactForm.subject}
                         onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                         placeholder="e.g. Inquiry regarding multi-branch onboarding"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs"
                       />
                     </div>
 
@@ -750,13 +685,13 @@ export function ContactUs() {
                         value={contactForm.message}
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         placeholder="Write your query or message here..."
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-violet-500 text-xs leading-relaxed"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 dark:focus:border-neutral-300 text-xs leading-relaxed"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-100 shadow-sm transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer pt-2"
+                      className="w-full py-3 px-6 rounded-2xl font-bold text-xs bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 shadow-sm transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer pt-2"
                     >
                       <Send size={13} />
                       <span>Submit General Inquiry</span>
@@ -771,93 +706,6 @@ export function ContactUs() {
 
         </div>
       </section>
-
-      {/* =========================================================================
-          INTERACTIVE AI ASSISTANT CHAT MODAL (Triggered by Hero Banner)
-         ========================================================================= */}
-      <AnimatePresence>
-        {isAiModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
-            >
-              {/* Header */}
-              <div className="p-4 sm:p-5 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between bg-neutral-50 dark:bg-neutral-950">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center">
-                    <Sparkles size={16} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-neutral-900 dark:text-white">
-                      StudyFlow AI Assistant
-                    </h3>
-                    <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono">
-                      Online • 24/7 Coaching Intelligence
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setIsAiModalOpen(false)}
-                  className="w-8 h-8 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 flex items-center justify-center hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              {/* Chat Conversation Body */}
-              <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-3 text-xs">
-                {aiChatMessages.map((msg, idx) => (
-                  <div
-                    key={idx}
-                    className={cn(
-                      'flex items-start gap-2.5',
-                      msg.sender === 'user' ? 'justify-end' : 'justify-start'
-                    )}
-                  >
-                    {msg.sender === 'ai' && (
-                      <div className="w-6 h-6 rounded-full bg-violet-600 text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px]">
-                        AI
-                      </div>
-                    )}
-                    <div
-                      className={cn(
-                        'p-3 rounded-2xl max-w-[80%] leading-relaxed',
-                        msg.sender === 'user'
-                          ? 'bg-violet-600 text-white rounded-tr-xs'
-                          : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-tl-xs'
-                      )}
-                    >
-                      {msg.text}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Input Form */}
-              <form onSubmit={handleSendAiMessage} className="p-3 sm:p-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center gap-2 bg-neutral-50 dark:bg-neutral-950">
-                <input
-                  type="text"
-                  value={aiInputText}
-                  onChange={(e) => setAiInputText(e.target.value)}
-                  placeholder="Ask anything about domain setup, fees, or QR attendance..."
-                  className="flex-1 px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 text-xs focus:outline-hidden focus:border-violet-500"
-                />
-                <button
-                  type="submit"
-                  className="w-10 h-10 rounded-xl bg-violet-600 hover:bg-violet-700 text-white flex items-center justify-center shrink-0 transition-colors"
-                >
-                  <Send size={15} />
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
