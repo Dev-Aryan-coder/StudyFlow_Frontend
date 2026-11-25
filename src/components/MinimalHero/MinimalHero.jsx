@@ -55,6 +55,7 @@ import FeaturesSection from '../FeaturesSection/FeaturesSection';
 import ProcessStepsSection from '../ProcessStepsSection/ProcessStepsSection';
 import GrowthSection from '../GrowthSection/GrowthSection';
 import PricingSection from '../PricingSection/PricingSection';
+import FaqsWithDashedLines from '../ui/faqs-with-dashed-lines';
 import './MinimalHero.css';
 
 // Component Pill Tabs above the IDE window
@@ -1892,6 +1893,9 @@ export function MinimalHero() {
 
       {/* Pricing & Infrastructure Plans Section */}
       <PricingSection />
+
+      {/* Aceternity Style FAQs With Dashed Lines Section */}
+      <FaqsWithDashedLines />
     </div>
   );
 }
